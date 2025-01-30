@@ -6,12 +6,18 @@ class LabeledTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final Widget label;
+  final bool? isvisible;
+  final Widget? suffixIcon;
+  final void Function(String)? onChanged;
 
   const LabeledTextField(
       {super.key,
       required this.controller,
       required this.hint,
-      required this.label});
+      required this.label,
+      this.onChanged,
+      this.isvisible = false,
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +27,13 @@ class LabeledTextField extends StatelessWidget {
         label,
         SizedBox(height: 8),
         AppTextField(
-          hintStyle: AppTheme.style14normalgrey,
+          hintStyle: AppTheme.style14normalblack.copyWith(color: AppTheme.gray),
           hint: hint,
           borderRidus: BorderRadius.circular(8),
+          secured: isvisible,
           textFieldBorderColor: AppTheme.gray,
           textEditingController: controller,
+          onChanged: onChanged,
         ),
       ],
     );

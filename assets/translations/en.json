@@ -1,5 +1,6 @@
 {
   "appName" : "Base",
   "SignIn" : "Sign In",
-  "SignOut" : "Sign Out"
+  "SignOut" : "Sign Out",
+  "changepassword" : "Change Password"
 }
