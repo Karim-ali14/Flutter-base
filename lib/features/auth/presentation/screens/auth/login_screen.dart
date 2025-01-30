@@ -1,4 +1,5 @@
-
+import 'package:flutter_base/features/auth/presentation/screens/auth/widgets/phone_number_field.dart';
+import 'package:flutter_base/features/auth/presentation/screens/auth/widgets/colum_of_fields.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../widgets/AuthHeaderWidget.dart';
@@ -9,14 +10,14 @@ import '../../../../../core/Constants/Constants.dart';
 import '../../../../../core/Theme/app_theme.dart';
 import '../../../../../core/localization/Keys.dart';
 
+//pupipii
 class LoginScreen extends ConsumerStatefulWidget {
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-
+  final TextEditingController _firstNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,35 +25,44 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         navigated: true,
         appContext: context,
         title: context.tr(SignInKey),
-          trailingWidget: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: defaultPaddingHorizontal),
-            child: Center(
-              child: Text(
+        trailingWidget: Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
+          child: Center(
+            child: Text(
               "Arabic",
-                style: AppTheme.styleWithTextBlackAdelleSansExtendedFonts16w400,
-              ),
+              style: AppTheme.styleWithTextBlackAdelleSansExtendedFonts16w400,
             ),
           ),
+        ),
       ),
       body: Padding(
-        padding : const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal) ,
-        child : Column(
+        padding:
+            const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
+        child: Column(
           children: [
             AuthHeaderWidget(
               marginTop: 36,
               marginBottom: 64,
             ),
+            SizedBox(height: 16),
+            PhoneNumberField(),
+            SizedBox(height: 16),
+            ColumOfFields(
+              controller: _firstNameController,
+              hint: "*****************************",
+              label: Text(
+                "Password",
+                style: AppTheme.style14BoldBlack,
+              ),
+            ),
             AppButton(
                 width: double.infinity,
                 height: defaultButtonHeight,
                 text: "ds",
-                onPress: (){})
+                onPress: () {})
           ],
-        )
-      )
-
+        ),
+      ),
     );
   }
-
 }
