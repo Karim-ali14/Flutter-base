@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Utils/Extintions.dart';
-import 'package:flutter_base/features/auth/presentation/widgets/AuthHeaderWidget.dart';
+import 'package:flutter_base/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,10 +12,10 @@ import '../../../../core/Theme/app_theme.dart';
 import '../../../../core/constants/eunms.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/widgets/otp_fields.dart';
+import '../widgets/otp_fields.dart';
 import '../../../../core/widgets/svg_icons.dart';
 import '../providers/otp_provider.dart';
-import '../widgets/TimerCounter.dart';
+import '../widgets/timer_counter.dart';
 
 
 class OTPScreen extends ConsumerStatefulWidget {

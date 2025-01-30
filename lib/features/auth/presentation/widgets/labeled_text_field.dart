@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Theme/app_theme.dart';
 import 'package:flutter_base/core/widgets/app_text_field.dart';
 
-class ColumOfFields extends StatelessWidget {
+class LabeledTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final Widget label;
 
-  ColumOfFields(
+  const LabeledTextField(
       {super.key,
       required this.controller,
       required this.hint,

@@ -2,11 +2,11 @@ import 'package:flutter_base/core/Constants/Constants.dart';
 import 'package:flutter_base/features/auth/presentation/providers/otp_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/Utils/Extintions.dart';
+import '../../../../../../core/Utils/Extintions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../Theme/app_theme.dart';
+import '../../../../core/Theme/app_theme.dart';
 
 class OTPFields extends ConsumerStatefulWidget {
   const OTPFields({super.key});
