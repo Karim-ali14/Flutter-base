@@ -6,10 +6,11 @@ import 'package:flutter_base/core/localization/Keys.dart';
 import 'package:flutter_base/core/widgets/app_button.dart';
 import 'package:flutter_base/core/widgets/app_text_field.dart';
 import 'package:flutter_base/core/widgets/custom_app_bar.dart';
-import 'package:flutter_base/features/auth/presentation/screens/auth/widgets/colum_of_fields.dart';
-import 'package:flutter_base/features/auth/presentation/screens/auth/widgets/phone_number_field.dart';
-import 'package:flutter_base/features/auth/presentation/widgets/AuthHeaderWidget.dart';
+import 'package:flutter_base/features/auth/presentation/widgets/phone_number_field.dart';
+import 'package:flutter_base/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+
+import '../widgets/labeled_text_field.dart';
 
 class SignUpScreen extends StatelessWidget {
   final TextEditingController _firstNameController = TextEditingController();
@@ -43,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                    child: ColumOfFields(
+                    child: LabeledTextField(
                   controller: _firstNameController,
                   hint: "yourname",
                   label: Text(
@@ -53,7 +54,7 @@ class SignUpScreen extends StatelessWidget {
                 )),
                 SizedBox(width: 8),
                 Expanded(
-                    child: ColumOfFields(
+                    child: LabeledTextField(
                   controller: _firstNameController,
                   hint: "yourname",
                   label: Text(
@@ -66,7 +67,7 @@ class SignUpScreen extends StatelessWidget {
             SizedBox(height: 16),
             PhoneNumberField(),
             SizedBox(height: 16),
-            ColumOfFields(
+            LabeledTextField(
               controller: _firstNameController,
               hint: "example@gmail.com",
               label: Row(
@@ -85,7 +86,7 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            ColumOfFields(
+            LabeledTextField(
               controller: _firstNameController,
               hint: "*****************************",
               label: Text(
@@ -94,7 +95,7 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            ColumOfFields(
+            LabeledTextField(
               controller: _firstNameController,
               hint: "*****************************",
               label: Text(
