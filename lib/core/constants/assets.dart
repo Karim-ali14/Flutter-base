@@ -7,4 +7,4 @@ const userPlaceholder = "assets/images/app_placeholder.png";
 const coverPlaceholder = "assets/images/app_placeholder.png";
 const backIconPath = "assets/images/back_icon.svg";
 const headerAuthIconPath = "assets/images/header_auth_icon.png";
-
+const changePasswordSuccess = "assets/images/change_password_success.png";

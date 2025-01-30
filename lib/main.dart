@@ -2,6 +2,8 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/constants/eunms.dart';
+import 'package:flutter_base/features/auth/presentation/screens/change_password_screen.dart';
+import 'package:flutter_base/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -132,7 +134,8 @@ class MyApp extends ConsumerWidget {
     routes: <GoRoute>[
       GoRoute(
         path: splashScreenRoute,
-        builder: (BuildContext context, GoRouterState state) => OTPScreen(phone: '01555146', otpType: OTPType.SignUp,),
+        builder: (BuildContext context, GoRouterState state) =>
+            ChangePassword(),
       ),
       GoRoute(
         path: loginScreenRoute,
@@ -141,6 +144,16 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: signUpScreenRoute,
         builder: (BuildContext context, GoRouterState state) => SignUpScreen(),
+      ),
+      GoRoute(
+        path: changePasswordScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            ChangePassword(),
+      ),
+      GoRoute(
+        path: forgetPasswordScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            ForgetPasswordScreen(),
       ),
     ],
   );
