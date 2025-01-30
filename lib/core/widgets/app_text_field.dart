@@ -7,7 +7,6 @@ class AppTextField extends StatefulWidget {
   final bool? readOnly;
   final String hint;
   final TextStyle? hintStyle;
-
   final Widget? label;
   final StringCallBack? value;
   final StringCallBack? changeValueCallback;

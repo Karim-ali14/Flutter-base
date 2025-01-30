@@ -1,14 +1,14 @@
-import 'package:flutter_base/features/auth/presentation/screens/auth/widgets/phone_number_field.dart';
-import 'package:flutter_base/features/auth/presentation/screens/auth/widgets/colum_of_fields.dart';
-import '../../../../../core/widgets/app_button.dart';
-import '../../../../../core/widgets/custom_app_bar.dart';
-import '../../widgets/AuthHeaderWidget.dart';
+import 'package:flutter_base/features/auth/presentation/widgets/phone_number_field.dart';
+import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../widgets/AuthHeaderWidget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../../core/Constants/Constants.dart';
-import '../../../../../core/Theme/app_theme.dart';
-import '../../../../../core/localization/Keys.dart';
+import '../../../../core/Constants/Constants.dart';
+import '../../../../core/Theme/app_theme.dart';
+import '../../../../core/localization/Keys.dart';
+import '../widgets/colum_of_fields.dart';
 
 //pupipii
 class LoginScreen extends ConsumerStatefulWidget {

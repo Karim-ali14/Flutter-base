@@ -1,23 +1,26 @@
+import 'package:flutter_base/core/Constants/Constants.dart';
+import 'package:flutter_base/features/auth/presentation/providers/otp_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../../../core/Utils/Extintions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../Theme/app_theme.dart';
 
-class OTPFields extends StatefulWidget {
-  const OTPFields({Key? key}) : super(key: key);
+class OTPFields extends ConsumerStatefulWidget {
+  const OTPFields({super.key});
 
   @override
-  State<OTPFields> createState() => OTPFieldsState();
+  ConsumerState<OTPFields> createState() => OTPFieldsState();
 }
 
-class OTPFieldsState extends State<OTPFields> {
-
-  TextEditingController otp1 = TextEditingController();
-  TextEditingController otp2 = TextEditingController();
-  TextEditingController otp3 = TextEditingController();
-  TextEditingController otp4 = TextEditingController();
-
+class OTPFieldsState extends ConsumerState<OTPFields> {
+  final formKey = GlobalKey<FormState>();
+  final otp1 = TextEditingController();
+  final otp2 = TextEditingController();
+  final otp3 = TextEditingController();
+  final otp4 = TextEditingController();
 
   late FocusNode firstFocusNode;
   late FocusNode secondFocusNode;
@@ -30,12 +33,18 @@ class OTPFieldsState extends State<OTPFields> {
     secondFocusNode = FocusNode();
     thirdFocusNode = FocusNode();
     fourthFocusNode = FocusNode();
+    // Add listeners to detect OTP changes
+    for (var controller in [otp1, otp2, otp3, otp4]) {
+      controller.addListener(_updateButtonState);
+    }
     super.initState();
   }
+
+
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
+    return Form(
+      key: formKey,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -47,7 +56,8 @@ class OTPFieldsState extends State<OTPFields> {
                 controller: otp1,
                 focusNode: firstFocusNode,
                 textAlign: TextAlign.center,
-                style: context.appTheme.textTheme.displayLarge,
+                cursorColor: AppTheme.mainAppColor,
+                style: AppTheme.styleWithTextBlackAdelleSansExtendedFonts20w700,
                 maxLength: 1,
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
@@ -56,11 +66,20 @@ class OTPFieldsState extends State<OTPFields> {
                   }
                 },
                 decoration: InputDecoration(
-                  counter: const SizedBox(),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppTheme.mainAppColorLight),
-                    borderRadius:BorderRadius.circular(10),
-                  ),
+                    counter: const SizedBox(),
+                    border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: AppTheme.gray),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
+                      borderRadius: BorderRadius.circular(defaultButtonRadius)
+                    ),
+                    hintText: "-"
                 ),
               ),
             ),
@@ -72,24 +91,33 @@ class OTPFieldsState extends State<OTPFields> {
               child: TextField(
                 controller: otp2,
                 focusNode: secondFocusNode,
+                cursorColor: AppTheme.mainAppColor,
                 textAlign: TextAlign.center,
-                style: context.appTheme.textTheme.displayLarge,
+                style: AppTheme.styleWithTextBlackAdelleSansExtendedFonts20w700,
                 maxLength: 1,
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   if (value.isNotEmpty) {
                     FocusScope.of(context).requestFocus(thirdFocusNode);
-                  }else{
+                  } else {
                     FocusScope.of(context).requestFocus(firstFocusNode);
                   }
                 },
                 decoration: InputDecoration(
-                  counter: const SizedBox(),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppTheme.mainAppColorLight),
-                    borderRadius:BorderRadius.circular(10),
-                  ),
-                ),
+                    counter: const SizedBox(),
+                    border: OutlineInputBorder(
+                      borderSide:
+                      const BorderSide(color: AppTheme.gray),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
+                        borderRadius: BorderRadius.circular(defaultButtonRadius)
+                    ),
+                    hintText: "-"),
               ),
             ),
           ),
@@ -100,24 +128,33 @@ class OTPFieldsState extends State<OTPFields> {
               child: TextField(
                 controller: otp3,
                 focusNode: thirdFocusNode,
+                cursorColor: AppTheme.mainAppColor,
                 textAlign: TextAlign.center,
-                style: context.appTheme.textTheme.displayLarge,
+                style: AppTheme.styleWithTextBlackAdelleSansExtendedFonts20w700,
                 maxLength: 1,
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   if (value.isNotEmpty) {
                     FocusScope.of(context).requestFocus(fourthFocusNode);
-                  }else{
+                  } else {
                     FocusScope.of(context).requestFocus(secondFocusNode);
                   }
                 },
                 decoration: InputDecoration(
-                  counter: const SizedBox(),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppTheme.mainAppColorLight),
-                    borderRadius:BorderRadius.circular(10),
-                  ),
-                ),
+                    counter: const SizedBox(),
+                    border: OutlineInputBorder(
+                      borderSide:
+                      const BorderSide(color: AppTheme.gray),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
+                        borderRadius: BorderRadius.circular(defaultButtonRadius)
+                    ),
+                    hintText: "-"),
               ),
             ),
           ),
@@ -129,7 +166,8 @@ class OTPFieldsState extends State<OTPFields> {
                 controller: otp4,
                 focusNode: fourthFocusNode,
                 textAlign: TextAlign.center,
-                style: context.appTheme.textTheme.displayLarge,
+                cursorColor: AppTheme.mainAppColor,
+                style: AppTheme.styleWithTextBlackAdelleSansExtendedFonts20w700,
                 maxLength: 1,
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
@@ -138,35 +176,44 @@ class OTPFieldsState extends State<OTPFields> {
                   }
                 },
                 decoration: InputDecoration(
-                  counter: const SizedBox(),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppTheme.mainAppColorLight),
-                    borderRadius:BorderRadius.circular(10),
-                  ),
-                ),
+                    counter: const SizedBox(),
+                    border: OutlineInputBorder(
+                      borderSide:
+                      const BorderSide(color: AppTheme.gray),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
+                        borderRadius: BorderRadius.circular(defaultButtonRadius)
+                    ),
+                    hintText: "-"),
               ),
             ),
           ),
+          const SizedBox(width: 15)
         ],
       ),
     );
   }
-
   @override
   void dispose() {
     for (var element in [otp1,otp2,otp3,otp4]) {
       element.dispose();
     }
-
+    for (var controller in [otp1, otp2, otp3, otp4]) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
   String get getCode => [otp1,otp2,otp3,otp4].map((e) => e.text).join("");
 
-  void setCode (String code){
-    otp1.text = code[0];
-    otp2.text = code[1];
-    otp3.text = code[2];
-    otp4.text = code[3];
+
+  void _updateButtonState() {
+    bool allFull = [otp1, otp2, otp3, otp4].every((c) => c.text.length == 1);
+    ref.read(otpProvider.notifier).updateStatue(allFull);
   }
 }
