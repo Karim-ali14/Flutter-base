@@ -49,81 +49,177 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding:
-            const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
-        child: Column(
-          children: [
-            AuthHeaderWidget(
-              marginTop: 44,
-              marginBottom: 64,
-            ),
-            PhoneNumberField(
-              controller: _phoneController,
-            ),
-            SizedBox(height: 14),
-            LabeledTextField(
-              isvisible: isPasswordVisible,
-              suffixIcon: IconButton(
-                icon: Icon(
-                  isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                  color: AppTheme.gray,
-                ),
-                onPressed: () {
-                  setState(() {
-                    isPasswordVisible = !isPasswordVisible;
-                  });
-                },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
+          child: Column(
+            children: [
+              AuthHeaderWidget(
+                marginTop: 44,
+                marginBottom: 64,
               ),
-              controller: _passwordController,
-              hint: /* context.tr(OldPasswordKey) */ ".......",
-              label: Text(
-                "Password",
-                style: AppTheme.style14BoldBlack,
+              PhoneNumberField(
+                controller: _phoneController,
               ),
-            ),
-            SizedBox(
-              height: 32,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: AppButton(
-                      enabled: validationLoginState,
-                      height: defaultButtonHeight,
-                      text: "Sign In",
-                      onPress: () {}),
+              SizedBox(height: 14),
+              LabeledTextField(
+                isvisible: isPasswordVisible,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: AppTheme.gray,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isPasswordVisible = !isPasswordVisible;
+                    });
+                  },
                 ),
-                SizedBox(
-                  width: defaultPaddingHorizontal,
+                controller: _passwordController,
+                hint: /* context.tr(OldPasswordKey) */ "**********",
+                label: Text(
+                  "Password",
+                  style: AppTheme.style14BoldBlack,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: validationLoginState
-                          ? AppTheme.mainAppColor
-                          : AppTheme.appGrey2,
-                      borderRadius: BorderRadius.circular(8)),
-                  width: 56,
-                  height: 56,
-                  child: Center(
-                      child: SVGIcons.localSVG(faceId,
-                          width: 32,
-                          height: 32,
-                          color: validationLoginState
-                              ? Colors.white
-                              : Colors.black)),
-                )
-              ],
-            )
-          ],
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  const Spacer(),
+                  InkWell(
+                      onTap: _forgetPassword,
+                      child: Text("Forget Password?",
+                          style: AppTheme
+                              .styleWithAppGunmetalLinkFonts14w400
+                              .copyWith(decoration: TextDecoration.underline)))
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: AppButton(
+                        enabled: validationLoginState,
+                        height: defaultButtonHeight,
+                        text: "Sign In",
+                        onPress: () {}),
+                  ),
+                  SizedBox(
+                    width: defaultPaddingHorizontal,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: validationLoginState
+                            ? AppTheme.mainAppColor
+                            : AppTheme.appGrey2,
+                        borderRadius: BorderRadius.circular(8)),
+                    width: 56,
+                    height: 56,
+                    child: Center(
+                        child: SVGIcons.localSVG(faceId,
+                            width: 32,
+                            height: 32,
+                            color: validationLoginState
+                                ? Colors.white
+                                : Colors.black)),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 32,
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 14.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        height: 1,
+                        color: AppTheme.gray,
+                      ),
+                    ),
+        
+                    Padding(
+                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 12.0),
+                      child: Text("Or sign in with",style: AppTheme.styleWithTextAppGrey4RegularFonts14w400,),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        height: 1,
+                        color: AppTheme.gray,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(onTap : _signInWithApply,child: SVGIcons.localImage(appleBtn)),
+                  SizedBox(
+                    width: 24,
+                  ),
+                  InkWell(onTap : _signInWithGoogle,child: SVGIcons.localImage(googleBtn)),
+                ],
+              ),
+              SizedBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don’t have an account?",
+                    style: AppTheme
+                        .styleWithTextBlackAdelleSansExtendedFonts16w400,
+                  ),
+                  InkWell(
+                    onTap: _signUp,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Text(
+                        "Sign Up",
+                        style: AppTheme
+                            .styleWithTextRedAdelleSansExtendedFonts16w400
+                            .copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppTheme.mainAppColor),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
+  void _forgetPassword() async {}
+
   void _updateLoginState() {
     bool allFull = [_phoneController, _passwordController]
         .every((controller) => controller.text.length > 1);
     ref.read(loginProvider.notifier).updateStatue(allFull);
+  }
+
+  void _signUp() {
+  }
+
+  void _signInWithApply() {
+  }
+
+  void _signInWithGoogle() {
   }
 }
