@@ -3,7 +3,8 @@ import 'package:flutter_base/core/Theme/app_theme.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class PhoneNumberField extends StatelessWidget {
-  const PhoneNumberField({super.key});
+  final TextEditingController? controller;
+  const PhoneNumberField({super.key, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,10 @@ class PhoneNumberField extends StatelessWidget {
         IntlPhoneField(
           decoration: InputDecoration(
             labelText: "Phone Number",
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: AppTheme.gray),
+              borderRadius: BorderRadius.circular(8),
+            ),
             errorBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppTheme.gray),
               borderRadius: BorderRadius.circular(8),
@@ -36,6 +41,7 @@ class PhoneNumberField extends StatelessWidget {
             print("Country Code: ${phone.countryCode}");
             print("Phone Number: ${phone.number}");
           },
+          controller: controller,
         ),
       ],
     );
