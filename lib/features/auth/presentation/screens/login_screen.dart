@@ -1,5 +1,8 @@
+import 'package:flutter_base/core/utils/FaceIDHelper.dart';
 import 'package:flutter_base/core/widgets/svg_icons.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/phone_number_field.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/constants/app_routes.dart';
 import '../../../../core/constants/assets.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
@@ -38,7 +41,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       appBar: CustomAppBar(
         navigated: true,
         appContext: context,
-        title: context.tr(SignInKey),
+        title: context.tr(signInKey),
         trailingWidget: Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
           child: Center(
@@ -112,21 +115,24 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   SizedBox(
                     width: defaultPaddingHorizontal,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: validationLoginState
-                            ? AppTheme.mainAppColor
-                            : AppTheme.appGrey2,
-                        borderRadius: BorderRadius.circular(8)),
-                    width: 56,
-                    height: 56,
-                    child: Center(
-                        child: SVGIcons.localSVG(faceId,
-                            width: 32,
-                            height: 32,
-                            color: validationLoginState
-                                ? Colors.white
-                                : Colors.black)),
+                  InkWell(
+                    onTap: _signInWithFaceId,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: validationLoginState
+                              ? AppTheme.mainAppColor
+                              : AppTheme.appGrey2,
+                          borderRadius: BorderRadius.circular(8)),
+                      width: 56,
+                      height: 56,
+                      child: Center(
+                          child: SVGIcons.localSVG(faceId,
+                              width: 32,
+                              height: 32,
+                              color: validationLoginState
+                                  ? Colors.white
+                                  : Colors.black)),
+                    ),
                   )
                 ],
               ),
@@ -206,7 +212,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 
-  void _forgetPassword() async {}
+  void _forgetPassword() {
+    context.push(forgetPasswordScreenRoute);
+  }
 
   void _updateLoginState() {
     bool allFull = [_phoneController, _passwordController]
@@ -215,11 +223,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   void _signUp() {
+    context.push(signUpScreenRoute);
   }
 
   void _signInWithApply() {
   }
 
   void _signInWithGoogle() {
+  }
+
+  void _signInWithFaceId() async{
+    bool isSuccess = await FaceIDHelper.authenticateWithFaceID();
+    print("process is : $isSuccess");
   }
 }

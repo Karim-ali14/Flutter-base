@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Utils/Extintions.dart';
+import 'package:flutter_base/core/localization/Keys.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -43,7 +44,7 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
     return Scaffold(
       appBar: CustomAppBar(
           appContext: context,
-          title: "OTP",
+          title:context.tr(otpKey),
           navigated: true,
           isCenter: false,
           trailingWidget: Padding(

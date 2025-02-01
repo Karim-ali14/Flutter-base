@@ -1,6 +1,8 @@
 {
   "appName" : "Base",
-  "SignIn" : "Sign In",
-  "SignOut" : "Sign Out",
+  "signIn" : "Sign In",
+  "signUp" : "Sign In",
+  "signOut" : "Sign Out",
+  "otp" : "OTP",
   "changepassword" : "Change Password"
 }

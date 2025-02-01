@@ -39,7 +39,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         appBar: CustomAppBar(
           navigated: true,
           appContext: context,
-          title: context.tr(SignInKey),
+          title: context.tr(changePasswordKey),
           trailingWidget: Padding(
             padding: EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
             child: Center(
