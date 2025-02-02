@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Utils/Extintions.dart';
+import 'package:flutter_base/core/constants/app_routes.dart';
 import 'package:flutter_base/core/localization/Keys.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +16,7 @@ import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../widgets/otp_fields.dart';
 import '../../../../core/widgets/svg_icons.dart';
-import '../providers/otp_provider.dart';
+import '../providers/auth_validation_providers.dart';
 import '../widgets/timer_counter.dart';
 
 
@@ -137,8 +138,7 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
                       height: defaultButtonHeight,
                       backColor: AppTheme.mainAppColor,
                       text: "Verify",
-                      onPress: () {
-                      })
+                      onPress: verify)
               ),
             ],
           ),
@@ -215,4 +215,12 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
     ref.read(getWishListServicesStateNotifier.notifier).fetchAllServicesInWishlist();
   }
 */
+
+  void verify() {
+    if(widget.otpType == OTPType.SignUp){
+       // go to home
+    }else if (widget.otpType == OTPType.Update){
+      context.push(changePasswordScreenRoute,extra: {PHONE_KEY : widget.phone});
+    }
+  }
 }

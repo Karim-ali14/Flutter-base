@@ -42,6 +42,13 @@ class PhoneNumberField extends StatelessWidget {
             print("Phone Number: ${phone.number}");
           },
           controller: controller,
+          validator: (value) {
+            if (value?.number.isEmpty == true) {
+              return "enter your phone";
+            } else {
+              return null;
+            }
+          },
         ),
       ],
     );

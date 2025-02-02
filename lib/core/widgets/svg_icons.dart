@@ -30,9 +30,11 @@ class SVGIcons {
     );
   }
 
-  static Widget localImage(String assetPath) {
+  static Widget localImage(String assetPath, {double? width, double? height}) {
     return Image.asset(
-      assetPath
+      assetPath,
+      width: width,
+      height: height,
     );
   }
 

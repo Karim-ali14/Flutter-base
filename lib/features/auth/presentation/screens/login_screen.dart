@@ -6,7 +6,7 @@ import '../../../../core/constants/app_routes.dart';
 import '../../../../core/constants/assets.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../providers/otp_provider.dart';
+import '../providers/auth_validation_providers.dart';
 import '../widgets/auth_header_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -210,6 +210,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    for (var controller in [_phoneController, _passwordController]) {
+      controller.dispose();
+    }
   }
 
   void _forgetPassword() {

@@ -16,3 +16,11 @@ final otpProvider = StateNotifierProvider<ValidationStateNotifier, bool>((ref) {
 final loginProvider = StateNotifierProvider<ValidationStateNotifier, bool>((ref) {
   return ValidationStateNotifier();
 });
+
+final forgetPasswordProvider = StateNotifierProvider<ValidationStateNotifier, bool>((ref) {
+  return ValidationStateNotifier();
+});
+
+final changePasswordProvider = StateNotifierProvider<ValidationStateNotifier, bool>((ref) {
+  return ValidationStateNotifier();
+});
