@@ -9,6 +9,7 @@ class LabeledTextField extends StatelessWidget {
   final bool? isvisible;
   final Widget? suffixIcon;
   final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   const LabeledTextField(
       {super.key,
@@ -17,7 +18,8 @@ class LabeledTextField extends StatelessWidget {
       required this.label,
       this.onChanged,
       this.isvisible = false,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class LabeledTextField extends StatelessWidget {
           textFieldBorderColor: AppTheme.gray,
           textEditingController: controller,
           onChanged: onChanged,
+          validate: validator,
         ),
       ],
     );

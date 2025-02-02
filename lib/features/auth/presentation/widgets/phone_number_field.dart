@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Theme/app_theme.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 class PhoneNumberField extends StatelessWidget {
   final TextEditingController? controller;
-  const PhoneNumberField({super.key, this.controller});
+  final void Function(PhoneNumber)? onChanged;
+  final FutureOr<String?> Function(PhoneNumber?)? validator;
+  const PhoneNumberField(
+      {super.key, this.controller, this.onChanged, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class PhoneNumberField extends StatelessWidget {
         SizedBox(height: 8),
         IntlPhoneField(
           decoration: InputDecoration(
-            labelText: "Phone Number",
+            hintText: "Enter phone number",
             border: OutlineInputBorder(
               borderSide: BorderSide(color: AppTheme.gray),
               borderRadius: BorderRadius.circular(8),
@@ -37,18 +43,9 @@ class PhoneNumberField extends StatelessWidget {
             ),
           ),
           initialCountryCode: 'US', // Set the default country
-          onChanged: (phone) {
-            print("Country Code: ${phone.countryCode}");
-            print("Phone Number: ${phone.number}");
-          },
+          onChanged: onChanged,
           controller: controller,
-          validator: (value) {
-            if (value?.number.isEmpty == true) {
-              return "enter your phone";
-            } else {
-              return null;
-            }
-          },
+          validator: validator,
         ),
       ],
     );

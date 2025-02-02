@@ -1,11 +1,7 @@
 import 'package:flutter_base/core/Constants/Constants.dart';
 import 'package:flutter_base/features/auth/presentation/providers/auth_validation_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../../../core/Utils/Extintions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import '../../../../core/Theme/app_theme.dart';
 
 class OTPFields extends ConsumerStatefulWidget {
@@ -40,7 +36,6 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -68,19 +63,20 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
                 decoration: InputDecoration(
                     counter: const SizedBox(),
                     border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: AppTheme.gray),
+                      borderSide: const BorderSide(color: AppTheme.gray),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                      borderSide: BorderSide(
+                          color: AppTheme.mainAppColor,
+                          width: 2.0), // Focused state
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
-                      borderRadius: BorderRadius.circular(defaultButtonRadius)
-                    ),
-                    hintText: "-"
-                ),
+                        borderSide:
+                            BorderSide(color: AppTheme.gray, width: 2.0),
+                        borderRadius:
+                            BorderRadius.circular(defaultButtonRadius)),
+                    hintText: "-"),
               ),
             ),
           ),
@@ -106,17 +102,19 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
                 decoration: InputDecoration(
                     counter: const SizedBox(),
                     border: OutlineInputBorder(
-                      borderSide:
-                      const BorderSide(color: AppTheme.gray),
+                      borderSide: const BorderSide(color: AppTheme.gray),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                      borderSide: BorderSide(
+                          color: AppTheme.mainAppColor,
+                          width: 2.0), // Focused state
                     ),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
-                        borderRadius: BorderRadius.circular(defaultButtonRadius)
-                    ),
+                        borderSide:
+                            BorderSide(color: AppTheme.gray, width: 2.0),
+                        borderRadius:
+                            BorderRadius.circular(defaultButtonRadius)),
                     hintText: "-"),
               ),
             ),
@@ -143,17 +141,19 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
                 decoration: InputDecoration(
                     counter: const SizedBox(),
                     border: OutlineInputBorder(
-                      borderSide:
-                      const BorderSide(color: AppTheme.gray),
+                      borderSide: const BorderSide(color: AppTheme.gray),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                      borderSide: BorderSide(
+                          color: AppTheme.mainAppColor,
+                          width: 2.0), // Focused state
                     ),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
-                        borderRadius: BorderRadius.circular(defaultButtonRadius)
-                    ),
+                        borderSide:
+                            BorderSide(color: AppTheme.gray, width: 2.0),
+                        borderRadius:
+                            BorderRadius.circular(defaultButtonRadius)),
                     hintText: "-"),
               ),
             ),
@@ -178,17 +178,19 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
                 decoration: InputDecoration(
                     counter: const SizedBox(),
                     border: OutlineInputBorder(
-                      borderSide:
-                      const BorderSide(color: AppTheme.gray),
+                      borderSide: const BorderSide(color: AppTheme.gray),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppTheme.mainAppColor, width: 2.0), // Focused state
+                      borderSide: BorderSide(
+                          color: AppTheme.mainAppColor,
+                          width: 2.0), // Focused state
                     ),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppTheme.gray ,width: 2.0),
-                        borderRadius: BorderRadius.circular(defaultButtonRadius)
-                    ),
+                        borderSide:
+                            BorderSide(color: AppTheme.gray, width: 2.0),
+                        borderRadius:
+                            BorderRadius.circular(defaultButtonRadius)),
                     hintText: "-"),
               ),
             ),
@@ -198,9 +200,10 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
       ),
     );
   }
+
   @override
   void dispose() {
-    for (var element in [otp1,otp2,otp3,otp4]) {
+    for (var element in [otp1, otp2, otp3, otp4]) {
       element.dispose();
     }
     for (var controller in [otp1, otp2, otp3, otp4]) {
@@ -209,8 +212,7 @@ class OTPFieldsState extends ConsumerState<OTPFields> {
     super.dispose();
   }
 
-  String get getCode => [otp1,otp2,otp3,otp4].map((e) => e.text).join("");
-
+  String get getCode => [otp1, otp2, otp3, otp4].map((e) => e.text).join("");
 
   void _updateButtonState() {
     bool allFull = [otp1, otp2, otp3, otp4].every((c) => c.text.length == 1);

@@ -5,19 +5,19 @@ import 'package:flutter_base/core/constants/constants.dart';
 import 'package:flutter_base/core/localization/Keys.dart';
 import 'package:flutter_base/core/widgets/custom_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_routes.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../providers/auth_validation_providers.dart';
 import '../widgets/auth_header_widget.dart';
 import '../widgets/phone_number_field.dart';
+
 class ForgetPasswordScreen extends ConsumerStatefulWidget {
   const ForgetPasswordScreen({super.key});
 
   @override
-  ConsumerState<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  ConsumerState<ForgetPasswordScreen> createState() =>
+      _ForgetPasswordScreenState();
 }
 
 class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
@@ -54,7 +54,7 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
         child: Container(
           height: double.infinity,
           padding:
-          const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
+              const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -85,8 +85,9 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
   }
 
   void requestOTPForPhone() {
-    if(formKey.currentState?.validate() == true){
-      context.push(changePasswordScreenRoute,extra: {PHONE_KEY : phoneController.text});
+    if (formKey.currentState?.validate() == true) {
+      context.push(changePasswordScreenRoute,
+          extra: {PHONE_KEY: phoneController.text});
     }
   }
 
@@ -95,6 +96,3 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
     ref.read(forgetPasswordProvider.notifier).updateStatue(isFull);
   }
 }
-
-
-
