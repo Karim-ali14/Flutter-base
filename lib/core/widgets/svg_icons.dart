@@ -21,17 +21,20 @@ class SVGIcons {
     );
   }
 
-  static Widget localSVG(String assetPath, {double width = 50, double height = 50}) {
+  static Widget localSVG(String assetPath, {double width = 50, double height = 50 , Color? color}) {
     return SvgPicture.asset(
       assetPath,
       width: width,
       height: height,
+      color: color,
     );
   }
 
-  static Widget localImage(String assetPath) {
+  static Widget localImage(String assetPath, {double? width, double? height}) {
     return Image.asset(
-      assetPath
+      assetPath,
+      width: width,
+      height: height,
     );
   }
 

@@ -1,14 +1,19 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/auth/presentation/screens/auth/sign_up_screen.dart';
+import 'package:flutter_base/core/Constants/Constants.dart';
+import 'package:flutter_base/core/constants/eunms.dart';
+import 'package:flutter_base/features/auth/presentation/screens/change_password_screen.dart';
+import 'package:flutter_base/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart' as ago;
 import 'core/Theme/app_theme.dart';
 import 'core/constants/app_routes.dart';
-import 'features/auth/presentation/screens/auth/login_screen.dart';
+import 'features/auth/presentation/screens/login_screen.dart';
+import 'features/auth/presentation/screens/otp_screen.dart';
+import 'features/auth/presentation/screens/sign_up_screen.dart';
 
 late SharedPreferences prefs;
 
@@ -139,6 +144,29 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: signUpScreenRoute,
         builder: (BuildContext context, GoRouterState state) => SignUpScreen(),
+      ),
+      GoRoute(
+        path: changePasswordScreenRoute,
+        builder: (BuildContext context, GoRouterState state) {
+          var extra = state.extra as Map;
+          return ChangePassword(
+            Phone: extra[PHONE_KEY],
+          );
+        },
+      ),
+      GoRoute(
+          path: otpScreenRoute,
+          builder: (BuildContext context, GoRouterState state) {
+            var extra = state.extra as Map;
+            return OTPScreen(
+              phone: extra[PHONE_KEY],
+              otpType: extra[OTP_TYPE_KEY] as OTPType,
+            );
+          }),
+      GoRoute(
+        path: forgetPasswordScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            ForgetPasswordScreen(),
       ),
     ],
   );

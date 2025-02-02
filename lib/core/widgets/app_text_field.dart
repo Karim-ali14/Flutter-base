@@ -7,7 +7,6 @@ class AppTextField extends StatefulWidget {
   final bool? readOnly;
   final String hint;
   final TextStyle? hintStyle;
-
   final Widget? label;
   final StringCallBack? value;
   final StringCallBack? changeValueCallback;
@@ -31,12 +30,14 @@ class AppTextField extends StatefulWidget {
   final AutovalidateMode? mode;
   final Widget? endWidget;
   final Widget? startWidget;
+  void Function(String)? onChanged;
   AppTextField({
     Key? key,
     required this.hint,
     this.borderRidus,
     this.secured = false,
     this.textInputType,
+    this.onChanged,
     this.width,
     this.label,
     this.value,
@@ -88,11 +89,12 @@ class _AppTextFieldState extends State<AppTextField> {
             textAlign:
                 widget.maxLen != null ? TextAlign.center : TextAlign.start,
             obscureText: (!_visiblePassword && widget.secured!),
-            onChanged: (val) {
-              if (widget.changeValueCallback != null) {
-                widget.changeValueCallback!(val);
-              }
-            },
+            onChanged: widget.onChanged ??
+                (val) {
+                  if (widget.changeValueCallback != null) {
+                    widget.changeValueCallback!(val);
+                  }
+                },
             validator: widget.validate,
             minLines: widget.minLines,
             maxLength: widget.maxLen,
