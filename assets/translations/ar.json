@@ -1,6 +1,8 @@
 {
   "appName" : "اساس",
-  "SignIn" : "Sign In",
-  "SignOut" : "الأشتراك",
+  "signIn" : "Sign In",
+  "signUp" : "Sign Up",
+  "signOut" : "الأشتراك",
+  "otp" : "OTP",
   "changepassword" : "تغيير كلمة المرور"
 }

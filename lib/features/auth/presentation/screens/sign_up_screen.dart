@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
       appBar: CustomAppBar(
         navigated: true,
         appContext: context,
-        title: context.tr(SignInKey),
+        title: context.tr(signUpKey),
         trailingWidget: Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
           child: Center(

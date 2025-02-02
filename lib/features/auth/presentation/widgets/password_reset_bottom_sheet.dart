@@ -21,7 +21,7 @@ class PasswordResetBottomSheet extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             "Password Reset Successfully",
-            style: AppTheme.styleColor333740FontSize20W700,
+            style: AppTheme.styleColorAppGunmetal40FontSize20W700,
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8),
