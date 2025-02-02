@@ -1,23 +1,28 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Theme/app_theme.dart';
+import 'package:flutter_base/core/constants/Assets.dart';
 import 'package:flutter_base/core/constants/constants.dart';
 import 'package:flutter_base/core/localization/Keys.dart';
 import 'package:flutter_base/core/widgets/app_button.dart';
 import 'package:flutter_base/core/widgets/custom_app_bar.dart';
+import 'package:flutter_base/core/widgets/svg_icons.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/auth_header_widget.dart';
-import 'package:flutter_base/features/auth/presentation/widgets/change_password_body.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/labeled_text_field.dart';
-import 'package:flutter_base/features/auth/presentation/widgets/password_reset_bottom_sheet.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChangePassword extends StatefulWidget {
-  const ChangePassword({super.key});
+import '../providers/auth_validation_providers.dart';
+import '../widgets/success_bottom_sheet.dart';
+
+class ChangePassword extends ConsumerStatefulWidget {
+  final String Phone;
+  const ChangePassword({super.key, required this.Phone});
 
   @override
-  State<ChangePassword> createState() => _ChangePasswordState();
+  ConsumerState<ChangePassword> createState() => _ChangePasswordState();
 }
 
-class _ChangePasswordState extends State<ChangePassword> {
+class _ChangePasswordState extends ConsumerState<ChangePassword> {
   final formKey = GlobalKey<FormState>();
   bool isPasswordVisible = true;
 
@@ -35,11 +40,13 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   @override
   Widget build(BuildContext context) {
+    final changePasswordState = ref.watch(changePasswordProvider);
+
     return Scaffold(
         appBar: CustomAppBar(
           navigated: true,
           appContext: context,
-          title: context.tr(SignInKey),
+          title: context.tr(changePasswordKey),
           trailingWidget: Padding(
             padding: EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
             child: Center(
@@ -54,8 +61,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           key: formKey,
           child: Container(
             height: double.infinity,
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPaddingHorizontal),
+            padding:
+            const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,9 +75,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     isvisible: isPasswordVisible,
                     suffixIcon: IconButton(
                       icon: Icon(
-                        isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                        isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                         color: AppTheme.gray,
                       ),
                       onPressed: () {
@@ -91,9 +96,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     isvisible: isPasswordVisible,
                     suffixIcon: IconButton(
                       icon: Icon(
-                        isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                        isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                         color: AppTheme.gray,
                       ),
                       onPressed: () {
@@ -110,27 +113,25 @@ class _ChangePasswordState extends State<ChangePassword> {
                     ),
                   ),
                   SizedBox(height: 32),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: defaultPaddingHorizontal),
-                      child: AppButton(
-                          // enabled: changePsswordState,
-                          width: double.infinity,
-                          height: defaultButtonHeight,
-                          backColor: AppTheme.mainAppColor,
-                          text: "save",
-                          onPress: () {
-                            showModalBottomSheet(
-                              context: context,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(20)),
-                              ),
-                              builder: (context) {
-                                return PasswordResetBottomSheet();
-                              },
-                            );
-                          })),
+                  AppButton(
+                      enabled: changePasswordState,
+                      width: double.infinity,
+                      height: defaultButtonHeight,
+                      backColor: AppTheme.mainAppColor,
+                      text: "save",
+                      onPress: () {
+                        // showModalBottomSheet(
+                        //   context: context,
+                        //   shape: RoundedRectangleBorder(
+                        //     borderRadius:
+                        //         BorderRadius.vertical(top: Radius.circular(20)),
+                        //   ),
+                        //   builder: (context) {
+                        //     return PasswordResetBottomSheet();
+                        //   },
+                        // );
+                        showSuccessBottomSheet();
+                      }),
                 ],
               ),
             ),
@@ -155,7 +156,26 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   void _updateButtonState() {
     bool allFull = [newPasswordController, confirmPasswordController]
-        .every((c) => c.text.length == 1);
-    // ref.read(otpProvider.notifier).updateStatue(allFull);
+        .every((c) => c.text.isNotEmpty);
+    ref.read(changePasswordProvider.notifier).updateStatue(allFull);
+  }
+
+  void showSuccessBottomSheet(){
+    showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10), topLeft: Radius.circular(10))),
+        context: context,
+        builder: (BuildContext context) => SuccessBottomSheet(
+          imageWidget: SVGIcons.localImage(successAnimation,width: 100 , height: 100),
+          title: "Password Reset Successfully",
+          description: "Your password has been updated",
+          btnName: "Save",
+          clickAction: () {
+
+          },
+        ));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter_base/core/Constants/Constants.dart';
-import 'package:flutter_base/features/auth/presentation/providers/otp_provider.dart';
+import 'package:flutter_base/features/auth/presentation/providers/auth_validation_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../../core/Utils/Extintions.dart';

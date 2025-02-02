@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base/core/Constants/Constants.dart';
 import 'package:flutter_base/core/constants/eunms.dart';
 import 'package:flutter_base/features/auth/presentation/screens/change_password_screen.dart';
 import 'package:flutter_base/features/auth/presentation/screens/forget_password_screen.dart';
@@ -134,8 +135,7 @@ class MyApp extends ConsumerWidget {
     routes: <GoRoute>[
       GoRoute(
         path: splashScreenRoute,
-        builder: (BuildContext context, GoRouterState state) =>
-            ChangePassword(),
+        builder: (BuildContext context, GoRouterState state) => LoginScreen(),
       ),
       GoRoute(
         path: loginScreenRoute,
@@ -147,9 +147,22 @@ class MyApp extends ConsumerWidget {
       ),
       GoRoute(
         path: changePasswordScreenRoute,
-        builder: (BuildContext context, GoRouterState state) =>
-            ChangePassword(),
+        builder: (BuildContext context, GoRouterState state) {
+          var extra = state.extra as Map;
+          return ChangePassword(
+            Phone: extra[PHONE_KEY],
+          );
+        },
       ),
+      GoRoute(
+          path: otpScreenRoute,
+          builder: (BuildContext context, GoRouterState state) {
+            var extra = state.extra as Map;
+            return OTPScreen(
+              phone: extra[PHONE_KEY],
+              otpType: extra[OTP_TYPE_KEY] as OTPType,
+            );
+          }),
       GoRoute(
         path: forgetPasswordScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>

@@ -17,7 +17,7 @@ class AppTheme {
   static const Color appGrey = Color(0xFFBEBEBE); //#E5E5E5
   static const Color appGrey2 = Color(0xFFECEDEE);
   static const Color appGrey3 = Color(0xFFe5e5e5);
-  static const Color appGrey4 = Color(0xFFF5F5F5);
+  static const Color appGrey4 = Color(0xFF737780);
   static const Color appGrey5 = Color(0xFFCECECE);
   static const Color appGrey6 = Color(0xFFE6E9EC);
   static const Color appGrey7 = Color(0xFF8088A4);
@@ -29,6 +29,8 @@ class AppTheme {
   static const Color appGrey13 = Color(0xFF667085);
   static const Color appGrey14 =
       Color(0x14000000); // box-shadow: 0px -6px 16px 0px #00000014;
+
+  static const Color appGunmetal = Color(0xFF333740);
   static const Color appLightGrey = Color(0xFFe5e5e5);
   static const Color appLightGreyV2 = Color(0xFFF0F0F0);
   static const Color appDarkerGrey = Color(0xFF898989);
@@ -149,8 +151,11 @@ class AppTheme {
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700);
   static const TextStyle styleblack16normal = TextStyle(
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal);
-  static const TextStyle styleColor333740FontSize20W700 = TextStyle(
-      color: Color(0xFF333740), fontSize: 20, fontWeight: FontWeight.w700);
+  static const TextStyle styleColorAppGunmetal40FontSize20W700 = TextStyle(
+      color: appGunmetal, fontSize: 20, fontWeight: FontWeight.w700);
+
+  static const TextStyle styleWithAppGunmetalLinkFonts14w400 = TextStyle(
+      color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts32w400 =
       TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w400);
@@ -196,6 +201,10 @@ class AppTheme {
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts14w400 =
       TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static const TextStyle styleWithTextAppGrey4RegularFonts14w400 =
+      TextStyle(color: appGrey4, fontSize: 14, fontWeight: FontWeight.w400);
+
   static const TextStyle style14normalblack = TextStyle(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal);
   static const TextStyle style14BoldBlack =
