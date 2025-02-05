@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Theme/app_theme.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
+import 'package:flutter_base/core/widgets/svg_icons.dart';
+import 'package:flutter_base/features/auth/presentation/widgets/intl_phone_field.dart';
+import 'package:flutter_base/features/auth/presentation/widgets/phone_number.dart';
 
 class PhoneNumberField extends StatelessWidget {
   final TextEditingController? controller;
@@ -23,6 +24,12 @@ class PhoneNumberField extends StatelessWidget {
         ),
         SizedBox(height: 8),
         IntlPhoneField(
+          dropdownTextStyle: AppTheme.fontStyle16color333740,
+          dropdownIcon: SVGIcons.localSVG(
+            "assets/images/arrowdown.svg",
+            width: 20,
+            height: 20,
+          ),
           decoration: InputDecoration(
             hintText: "Enter phone number",
             border: OutlineInputBorder(
@@ -30,7 +37,7 @@ class PhoneNumberField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppTheme.gray),
+              borderSide: BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(8),
             ),
             enabledBorder: OutlineInputBorder(
@@ -38,7 +45,7 @@ class PhoneNumberField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppTheme.gray),
+              borderSide: BorderSide(color: AppTheme.blue),
               borderRadius: BorderRadius.circular(8),
             ),
           ),

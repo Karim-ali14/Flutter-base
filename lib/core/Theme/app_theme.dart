@@ -151,11 +151,11 @@ class AppTheme {
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700);
   static const TextStyle styleblack16normal = TextStyle(
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal);
-  static const TextStyle styleColorAppGunmetal40FontSize20W700 = TextStyle(
-      color: appGunmetal, fontSize: 20, fontWeight: FontWeight.w700);
+  static const TextStyle styleColorAppGunmetal40FontSize20W700 =
+      TextStyle(color: appGunmetal, fontSize: 20, fontWeight: FontWeight.w700);
 
-  static const TextStyle styleWithAppGunmetalLinkFonts14w400 = TextStyle(
-      color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
+  static const TextStyle styleWithAppGunmetalLinkFonts14w400 =
+      TextStyle(color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts32w400 =
       TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w400);
@@ -175,6 +175,8 @@ class AppTheme {
   static const TextStyle styleWithTextRedAdelleSansExtendedFonts16w400 =
       TextStyle(color: mainAppColor, fontSize: 16, fontWeight: FontWeight.w400);
 
+  static const TextStyle fontStyle16color333740 = TextStyle(
+      color: Color(0xff333740), fontWeight: FontWeight.w400, fontSize: 16);
   static const TextStyle styleWithTextGray7AdelleSansExtendedFonts12w400 =
       TextStyle(color: appGrey7, fontSize: 12, fontWeight: FontWeight.w400);
 

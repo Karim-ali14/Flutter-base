@@ -61,20 +61,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Row(
                 children: [
                   Expanded(
-                      child: LabeledTextField(
-                    controller: _firstNameController,
-                    hint: "yourname",
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "first name is required";
-                      }
-                      return null;
-                    },
-                    label: Text(
-                      "Firstname",
-                      style: AppTheme.style14BoldBlack,
+                    child: LabeledTextField(
+                      controller: _firstNameController,
+                      hint: "yourname",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "first name is required";
+                        }
+                        return null;
+                      },
+                      label: Text(
+                        "Firstname",
+                        style: AppTheme.style14BoldBlack,
+                      ),
                     ),
-                  )),
+                  ),
                   SizedBox(width: 8),
                   Expanded(
                       child: LabeledTextField(

@@ -33,7 +33,7 @@ class LabeledTextField extends StatelessWidget {
           hint: hint,
           borderRidus: BorderRadius.circular(8),
           secured: isvisible,
-          textFieldBorderColor: AppTheme.gray,
+          textFieldBorderColor: AppTheme.blue,
           textEditingController: controller,
           onChanged: onChanged,
           validate: validator,
