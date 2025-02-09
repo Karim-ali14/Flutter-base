@@ -10,14 +10,18 @@ class LoginUseCase extends StateNotifier<StateModel<User>>{
   final AuthRepository _authRepository;
   LoginUseCase(this.ref, this._authRepository):super(StateModel());
 
-  void call({String? phone})async {
+  void call({String? phoneNumber, String? password}) async {
     state = StateModel(state: DataState.LOADING);
-    ResponseModel responseModel = await _authRepository.login(phone: phone);
+    ResponseModel responseModel = await _authRepository.login(
+      phoneNumber: phoneNumber,
+      password: password
+    );
     if (responseModel.isSuccess == true) {
       state = StateModel(state: DataState.SUCCESS,
           data: toUserEntity(UserModel.fromJson(responseModel.data)),
           message: responseModel.message);
-    } else {
+    }
+    else {
       state = StateModel(state: DataState.ERROR, message: responseModel.getFullError());
     }
   }
