@@ -7,7 +7,6 @@ class AppTextField extends StatefulWidget {
   final bool? readOnly;
   final String hint;
   final TextStyle? hintStyle;
-
   final Widget? label;
   final StringCallBack? value;
   final StringCallBack? changeValueCallback;
@@ -16,6 +15,7 @@ class AppTextField extends StatefulWidget {
   final BorderRadius? borderRidus;
   final Color? textFieldColor;
   final Color? textFieldBorderColor;
+  final Color? textFieldEnableBorderColor;
   final TextInputType? textInputType;
   final bool? secured;
   final int? minLines;
@@ -31,12 +31,14 @@ class AppTextField extends StatefulWidget {
   final AutovalidateMode? mode;
   final Widget? endWidget;
   final Widget? startWidget;
+  void Function(String)? onChanged;
   AppTextField({
     Key? key,
     required this.hint,
     this.borderRidus,
     this.secured = false,
     this.textInputType,
+    this.onChanged,
     this.width,
     this.label,
     this.value,
@@ -59,6 +61,7 @@ class AppTextField extends StatefulWidget {
     this.endWidget,
     this.startWidget,
     this.hintStyle,
+    this.textFieldEnableBorderColor,
   }) : super(key: key);
 
   @override
@@ -88,11 +91,12 @@ class _AppTextFieldState extends State<AppTextField> {
             textAlign:
                 widget.maxLen != null ? TextAlign.center : TextAlign.start,
             obscureText: (!_visiblePassword && widget.secured!),
-            onChanged: (val) {
-              if (widget.changeValueCallback != null) {
-                widget.changeValueCallback!(val);
-              }
-            },
+            onChanged: widget.onChanged ??
+                (val) {
+                  if (widget.changeValueCallback != null) {
+                    widget.changeValueCallback!(val);
+                  }
+                },
             validator: widget.validate,
             minLines: widget.minLines,
             maxLength: widget.maxLen,
@@ -125,7 +129,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 focusedBorder: getBorder,
                 errorBorder: getErrBorder,
                 focusedErrorBorder: getErrBorder,
-                enabledBorder: getBorder,
+                enabledBorder: getEnbleBorder,
                 disabledBorder: getBorder,
                 filled: true,
                 counter: SizedBox(),
@@ -138,15 +142,24 @@ class _AppTextFieldState extends State<AppTextField> {
 
   InputBorder get getBorder => widget.textFieldBorderColor != null
       ? OutlineInputBorder(
-          borderSide: BorderSide(
-              color: widget.textFieldBorderColor ?? Colors.transparent),
+          borderSide:
+              BorderSide(color: widget.textFieldBorderColor ?? Colors.blue),
           borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
         )
       : UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
           borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
         );
-
+  InputBorder get getEnbleBorder => widget.textFieldBorderColor != null
+      ? OutlineInputBorder(
+          borderSide: BorderSide(
+              color: widget.textFieldEnableBorderColor ?? Colors.grey),
+          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+        )
+      : UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+        );
   InputBorder get getErrBorder => widget.textFieldBorderColor != null
       ? OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red),
