@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Theme/app_theme.dart';
 import 'package:flutter_base/core/widgets/svg_icons.dart';
@@ -9,7 +7,7 @@ import 'package:flutter_base/features/auth/presentation/widgets/phone_number.dar
 class PhoneNumberField extends StatelessWidget {
   final TextEditingController? controller;
   final void Function(PhoneNumber)? onChanged;
-  final FutureOr<String?> Function(PhoneNumber?)? validator;
+  final String? Function(String?)? validator;
   const PhoneNumberField(
       {super.key, this.controller, this.onChanged, this.validator});
 

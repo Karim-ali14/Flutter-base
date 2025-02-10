@@ -98,9 +98,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               PhoneNumberField(
                 controller: _phoneController,
                 validator: (phone) {
-                  if (phone == null || phone.number.isEmpty) {
+                  if (phone == null || phone.isEmpty) {
                     return 'Phone number is required';
-                  } else if (phone.number.length < 8) {
+                  } else if (phone.length < 8) {
                     return 'Phone number must be at least 8 digits';
                   }
                   return null;
