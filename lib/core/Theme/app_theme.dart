@@ -11,8 +11,9 @@ class AppTheme {
   static const Color secondaryAppColorLight = Color(0xFF4FC2FF);
   static const Color secondaryAppColorDark = Color(0xFF439FD0);
   static const Color secondaryTempAppColorDark = Color(0xFFF04741);
-  static const Color green = Color(0xFF23B574);
   static const Color gray = Color(0xFFD0D1D4);
+  static const Color lightGreen = Color(0xFFE7F6E5);
+  static const Color appGreen = Color(0xFF0DA500);
 
   static const Color appGrey = Color(0xFFBEBEBE); //#E5E5E5
   static const Color appGrey2 = Color(0xFFECEDEE);
@@ -162,6 +163,9 @@ class AppTheme {
   static const TextStyle styleWithAppGunmetalLinkFonts14w400 = TextStyle(
       color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
 
+  static const TextStyle styleWithAppGrey7Fonts14w400 = TextStyle(
+      color: appGrey7, fontSize: 14, fontWeight: FontWeight.w400);
+
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts32w400 =
       TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w400);
 
@@ -170,6 +174,9 @@ class AppTheme {
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts18w400 =
       TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w400);
+
+ static const TextStyle styleWithTextBlackAdelleSansExtendedFonts18w500 =
+      TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts16w700 =
       TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w700);
@@ -182,6 +189,9 @@ class AppTheme {
 
   static const TextStyle styleWithTextGray7AdelleSansExtendedFonts12w400 =
       TextStyle(color: appGrey7, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static const TextStyle styleWithTextGreenAdelleSansExtendedFonts12w400 =
+      TextStyle(color: appGreen, fontSize: 12, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextGray13AdelleSansExtendedFonts11w400 =
       TextStyle(color: appGrey13, fontSize: 11, fontWeight: FontWeight.w400);
