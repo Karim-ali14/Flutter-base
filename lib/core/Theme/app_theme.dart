@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTheme {
-  static const Color mainAppColor = Color(0xFFA259FB);
+  static const Color mainAppColor = Color(0xFF3DB5D3);
   static const Color mainAppColorLight = Color(0xFFF7DBDE);
   static const Color mainAppColorLight2 = Color(0xFFFDE9EB);
   static const Color mainAppColorBright = Color(0xFFe6f4ff);
@@ -55,6 +55,7 @@ class AppTheme {
   static Color? lightDetailTextColor = Colors.grey[200];
   static const Color darkDetailTextColor = Colors.black54;
   static const Color darkTextColor = Colors.black;
+  static const Color code22252BColor = Color(0xff22252B);
 
   static const kPrimaryColor = Color(0xFF1ad3b0);
   static const kContentColorLightTheme = Color(0xFF1D1D35);
@@ -63,6 +64,7 @@ class AppTheme {
   static const kYellow = Color(0xFFEC9922);
   static const appYellow = Color(0xFFCDCB02);
   static const kErrorColor = Color(0xFFF03738);
+  static const code8088A4Color = Color(0xFF8088A4);
 
   static const kDefaultPadding = 20.0;
 
@@ -153,9 +155,18 @@ class AppTheme {
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal);
   static const TextStyle styleColorAppGunmetal40FontSize20W700 =
       TextStyle(color: appGunmetal, fontSize: 20, fontWeight: FontWeight.w700);
-
+  static const TextStyle style14W500code8088A4Color = TextStyle(
+      color: code8088A4Color,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      fontFamily: "cairepro");
   static const TextStyle styleWithAppGunmetalLinkFonts14w400 =
       TextStyle(color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
+  static const TextStyle fontStyle24W70022252BColor = TextStyle(
+      color: code22252BColor,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      fontFamily: "cairepro");
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts32w400 =
       TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w400);

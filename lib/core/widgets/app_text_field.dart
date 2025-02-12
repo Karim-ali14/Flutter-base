@@ -21,6 +21,7 @@ class AppTextField extends StatefulWidget {
   final int? minLines;
   final int? maxLines;
   final int? maxLen;
+  final int? errorMaxLine;
   final bool? disabled;
   final VoidCallback? onClick;
   final TextInputAction? textInputAction;
@@ -62,6 +63,7 @@ class AppTextField extends StatefulWidget {
     this.startWidget,
     this.hintStyle,
     this.textFieldEnableBorderColor,
+    this.errorMaxLine,
   }) : super(key: key);
 
   @override
@@ -107,6 +109,7 @@ class _AppTextFieldState extends State<AppTextField> {
                     color: Theme.of(context).textTheme.bodyMedium!.color,
                     fontSize: 16),
             decoration: InputDecoration(
+                errorMaxLines: widget.errorMaxLine,
                 label: widget.label,
                 suffixText: widget.endText,
                 hintText: widget.hint,

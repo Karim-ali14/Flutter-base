@@ -67,6 +67,18 @@ class _ForgetPasswordScreenState extends ConsumerState<ForgetPasswordScreen> {
                 SizedBox(height: 25),
                 PhoneNumberField(
                   controller: phoneController,
+                  validator: (phone) {
+                    if (phone == null || phone.isEmpty) {
+                      return 'Phone number is required';
+                    }
+
+                    final RegExp phoneRegExp = RegExp(r"^\+\d{1,3}\d{7,12}$");
+                    if (!phoneRegExp.hasMatch(phone)) {
+                      return 'Enter a valid phone number (e.g., +1234567890)';
+                    }
+
+                    return null;
+                  },
                 ),
                 SizedBox(height: 25),
                 AppButton(

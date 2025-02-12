@@ -66,7 +66,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: "yourname",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "first name is required";
+                          return "First name is required";
+                        }
+                        final RegExp nameRegExp = RegExp(r"^[a-zA-Z]{2,}$");
+                        if (!nameRegExp.hasMatch(value)) {
+                          return "letters only, at least 2 characters";
                         }
                         return null;
                       },
@@ -83,7 +87,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hint: "yourname",
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "last name is required";
+                        return "First name is required";
+                      }
+                      final RegExp nameRegExp = RegExp(r"^[a-zA-Z]{2,}$");
+                      if (!nameRegExp.hasMatch(value)) {
+                        return "letters only, at least 2 characters";
                       }
                       return null;
                     },
@@ -100,9 +108,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 validator: (phone) {
                   if (phone == null || phone.isEmpty) {
                     return 'Phone number is required';
-                  } else if (phone.length < 8) {
-                    return 'Phone number must be at least 8 digits';
                   }
+
+                  final RegExp phoneRegExp = RegExp(r"^\+\d{1,3}\d{7,12}$");
+                  if (!phoneRegExp.hasMatch(phone)) {
+                    return 'Enter a valid phone number (e.g., +1234567890)';
+                  }
+
                   return null;
                 },
               ),
@@ -110,6 +122,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               LabeledTextField(
                 controller: _emailController,
                 hint: "example@gmail.com",
+                validator: (email) {
+                  if (email != null && email.isNotEmpty) {
+                    final RegExp emailRegExp = RegExp(
+                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                    if (!emailRegExp.hasMatch(email)) {
+                      return 'Enter a valid email address';
+                    }
+                  }
+                  return null; // Email is optional, so we allow empty input
+                },
                 label: Row(
                   children: [
                     Text(
@@ -142,13 +164,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                 ),
                 controller: _passwordController,
-                hint: /* context.tr(OldPasswordKey) */ "**********",
+                hint: "*****************************",
+                errorMaxLine: 3,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Password is required";
-                  } else if (value.length < 6) {
-                    return "Password must be at least 6 characters";
                   }
+
+                  final RegExp passwordRegExp =
+                      RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,50}$");
+                  if (!passwordRegExp.hasMatch(value)) {
+                    return "Password must be at least 8 characters, include at least one letter and one number";
+                  }
+
                   return null;
                 },
                 label: Text(
@@ -162,14 +190,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 isvisible: isPasswordVisibleConfirmPassword,
                 suffixIcon: IconButton(
                   icon: Icon(
-                    isPasswordVisiblePassword
+                    isPasswordVisibleConfirmPassword
                         ? Icons.visibility
                         : Icons.visibility_off,
                     color: AppTheme.gray,
                   ),
                   onPressed: () {
                     setState(() {
-                      isPasswordVisiblePassword = !isPasswordVisiblePassword;
+                      isPasswordVisibleConfirmPassword =
+                          !isPasswordVisibleConfirmPassword;
                     });
                   },
                 ),
@@ -177,15 +206,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Confirm Password is required";
+                  }
+
+                  final RegExp passwordRegExp =
+                      RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,50}$");
+
+                  if (!passwordRegExp.hasMatch(value)) {
+                    return "Password must be at least 8 characters, include at least one letter and one number.";
                   } else if (value != _passwordController.text) {
                     return "Passwords do not match";
                   }
+
                   return null;
                 },
                 label: Text(
                   "Confirm Password",
                   style: AppTheme.style14BoldBlack,
                 ),
+                errorMaxLine: 3, // Allows multi-line error messages if needed
               ),
               SizedBox(height: 12),
               Row(
