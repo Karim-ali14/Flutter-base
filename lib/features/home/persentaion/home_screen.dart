@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/core/Constants/Constants.dart';
 import 'package:flutter_base/core/Theme/app_theme.dart';
 import 'package:flutter_base/core/widgets/svg_icons.dart';
+import 'package:flutter_base/features/home/persentaion/widget/horizontal_category_listview_with_title.dart';
+import 'package:flutter_base/features/home/persentaion/widget/horizontal_restaurant_card.dart';
 import 'package:flutter_base/features/home/persentaion/widget/restaurant_category.dart';
 import 'package:flutter_base/features/home/persentaion/widget/search_with_filter.dart';
 import 'package:flutter_base/features/home/persentaion/widget/service_options.dart';
@@ -41,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Row(
                       children: [
-                        SVGIcons.localSVG(gpsIconPath, width: 24, height: 24),
+                        SVGIcons.localSVG(homeGpsIconPath,
+                            width: 24, height: 24),
                         Padding(
                           padding: EdgeInsetsDirectional.symmetric(
                               horizontal: defaultButtonRadius),
@@ -115,7 +118,20 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 24,
               ),
-              RestaurantCategory()
+              Padding(
+                padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: defaultPaddingHorizontal),
+                child: Column(
+                  children: [
+                    HorizontalCategoryListWithTitle(
+                        list: ["", "", "", "", "", "", ""],
+                        showLoading: false,
+                        itemClick: () {},
+                        onSeeAllClickListener: () {}
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
