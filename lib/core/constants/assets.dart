@@ -24,4 +24,5 @@ const gpsIconPath = "assets/images/gps.svg";
 const favoriteIconPath = "assets/images/favorite.svg";
 const discountIconPath = "assets/images/discount_icon.svg";
 const clockIconPath = "assets/images/clock.svg";
+const categoryIconPath = "assets/images/category_icon.svg";
 

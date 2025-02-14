@@ -149,7 +149,7 @@ class _HorizontalRestaurantCardState extends State<HorizontalRestaurantCard> {
                     SizedBox(
                       width: 6,
                     ),
-                    SVGIcons.localSVG(clockIconPath, width: 16, height: 16),
+                    SVGIcons.localSVG(categoryIconPath, width: 16, height: 16),
                     Padding(
                       padding: const EdgeInsetsDirectional.symmetric(
                           horizontal: 6.0),

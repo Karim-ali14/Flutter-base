@@ -29,7 +29,7 @@ class RestaurantCategory extends StatelessWidget {
           Container(
             width: 110,
             height: 80,
-            color: CupertinoColors.black.withOpacity(.4),
+            color: CupertinoColors.black.withOpacity(.3),
           ),
           Align(
             alignment: Alignment.center,

@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/home/persentaion/widget/restaurant_category.dart';
+import 'package:flutter_base/core/Constants/Constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import 'TitleWithSeeAll.dart';
+import '../title_with_see_all.dart';
+import 'horizontal_restaurant_card.dart';
 
-class HorizontalCategoryListWithTitle extends StatefulWidget {
+class HorizontalRestaurantListWithTitle extends StatefulWidget {
   final List<String> list;
   final bool showLoading;
   final VoidCallback itemClick;
   final VoidCallback onSeeAllClickListener;
-  const HorizontalCategoryListWithTitle(
+  const HorizontalRestaurantListWithTitle(
       {super.key,
         required this.list,
         required this.showLoading,
         required this.itemClick, required this.onSeeAllClickListener});
 
   @override
-  State<HorizontalCategoryListWithTitle> createState() => _HorizontalCategoryListWithTitleState();
+  State<HorizontalRestaurantListWithTitle> createState() => _HorizontalRestaurantListWithTitleState();
 }
 
-class _HorizontalCategoryListWithTitleState extends State<HorizontalCategoryListWithTitle> {
+class _HorizontalRestaurantListWithTitleState extends State<HorizontalRestaurantListWithTitle> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,17 +29,17 @@ class _HorizontalCategoryListWithTitleState extends State<HorizontalCategoryList
           Skeletonizer(
             enabled: widget.showLoading,
             child: TitleWithSeeAll(
-              title: "Cuisines",
+              title: "Trending Now",
               onClickOnSeeAll: () {
                 widget.onSeeAllClickListener.call();
               },
             ),
           ),
           SizedBox(
-            height: 16,
+            height: 24,
           ),
           SizedBox(
-            height: 80,
+            height: 215,
             child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
@@ -48,10 +49,7 @@ class _HorizontalCategoryListWithTitleState extends State<HorizontalCategoryList
                       onTap: (){
                         widget.itemClick.call();
                       },
-                      child: RestaurantCategory(
-                        categoryImg: "https://t3.ftcdn.net/jpg/02/52/38/80/360_F_252388016_KjPnB9vglSCuUJAumCDNbmMzGdzPAucK.jpg",
-                        categoryName: "sdfsadfs",
-                      ),
+                      child: HorizontalRestaurantCard(),
                     ),
                   );
                 },

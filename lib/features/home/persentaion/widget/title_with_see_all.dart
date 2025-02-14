@@ -29,9 +29,11 @@ class TitleWithSeeAll extends StatelessWidget {
           child: InkWell(
             onTap: onClickOnSeeAll,
             child: Text(
-              "See all",
+              "See All",
               style:
-                  AppTheme.styleWithAppGrey7Fonts14w400,
+                  AppTheme.styleWithMainAppColor7Fonts14w400.copyWith(
+                    decoration: TextDecoration.underline
+                  ),
             ),
           ),
           replacement: Container(
