@@ -31,8 +31,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
       final client = ref.read(userProvider.notifier).checkIfUserExist();
       ref.read(userProvider.notifier).setUser(client);
-      ref.read(httpOperationsProvider).userToken = "asdkjfkj";
-      print("client model : ${ref.read(httpOperationsProvider).userToken}");
+      ref.read(httpOperationsProvider).userToken = client?.token;
 
       context.go(loginScreenRoute);
       if (client != null) {
@@ -45,9 +44,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         //   context.push(R_OnBoardingScreen);
         // }
       }
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(loginStateNotifierProvider.notifier).call(phone: "5111111112");
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) {});
     });
 
     super.initState();
