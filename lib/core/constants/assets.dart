@@ -14,6 +14,7 @@ const notificationIconPath = "assets/images/notification_icon.svg";
 const searchIconPath = "assets/images/search_icon.svg";
 const calendarIconPath = "assets/images/calendar_icon.svg";
 const homeIconPath = "assets/images/home_icon.svg";
+const orderIconPath = "assets/images/order_icon.svg";
 const shopIconPath = "assets/images/shop_icon.svg";
 const starIconPath = "assets/images/star_icon.svg";
 const appleBtn = "assets/images/apple_btn.png";

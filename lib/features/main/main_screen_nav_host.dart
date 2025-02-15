@@ -1,229 +1,243 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-//
-// import '../../Widgets/app_button.dart';
-// import '../../Widgets/svg_icons.dart';
-//
-// class MainScreenNavHost extends ConsumerStatefulWidget {
-//   const MainScreenNavHost({super.key});
-//
-//   @override
-//   ConsumerState<MainScreenNavHost> createState() => MainScreenNavHostState();
-// }
-//
-// class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> {
-//   int currentTab = 0;
-//   Widget currentScreen = const HomeScreen();
-//   final listTabsName = ["Home", "Orders" ,"Cart", "Wishlist", "More"];
-//   final pages = [HomeScreen(), OrdersScreen() ,CartScreen(), WishListScreen(), MoreScreen()];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final client = ref.watch(clientStateProvider);
-//     return Scaffold(
-//       appBar: PreferredSize(
-//           preferredSize: const Size.fromHeight(60),
-//           child: CustomAppBar(
-//             appContext: context,
-//             title: currentTab == 0
-//                 ? client == null
-//                     ? "Hi There"
-//                     : "Hi ${client.client?.name}"
-//                 : listTabsName[currentTab],
-//             isCenter: false,
-//             navigated: false,
-//             trailingWidget: AppBarTrailing(currentTab: currentTab),
-//           )),
-//       body: IndexedStack(
-//         index: currentTab,
-//         children: pages,
-//       ),
-//       bottomNavigationBar: Container(
-//         decoration: BoxDecoration(boxShadow: [
-//           BoxShadow(
-//               color: Colors.grey[100]!,
-//               blurRadius: 20,
-//               spreadRadius: 2,
-//               offset: Offset(0, -1))
-//         ]),
-//         child: BottomAppBar(
-//           elevation: 20,
-//           child: SizedBox(
-//             height: 60,
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 MaterialButton(
-//                   minWidth: 40,
-//                   onPressed: () {
-//                     setState(() {
-//                       currentTab = 0;
-//                       currentScreen = const HomeScreen();
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       currentTab == 0
-//                           ? SVGIcons.homeActiveIcon()
-//                           : SVGIcons.homeUnActiveIcon(),
-//                       SizedBox(
-//                         height: 3,
-//                       ),
-//                       Text(
-//                         listTabsName[0],
-//                         style: currentTab == 0
-//                             ? AppTheme
-//                                 .styleWithTextRedAdelleSansExtendedFonts11w500
-//                             : AppTheme
-//                                 .styleWithTextGray7AdelleSansExtendedFonts11w500,
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 MaterialButton(
-//                   minWidth: 40,
-//                   onPressed: () {
-//                     setState(() {
-//                       currentTab = 1;
-//                       currentScreen = const OrdersScreen();
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       currentTab == 1
-//                           ? SVGIcons.orderActiveIcon()
-//                           : SVGIcons.orderUnActiveIcon(),
-//                       SizedBox(
-//                         height: 3,
-//                       ),
-//                       Text(
-//                         listTabsName[1],
-//                         style: currentTab == 1
-//                             ? AppTheme
-//                                 .styleWithTextRedAdelleSansExtendedFonts11w500
-//                             : AppTheme
-//                                 .styleWithTextGray7AdelleSansExtendedFonts11w500,
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 MaterialButton(
-//                   minWidth: 40,
-//                   onPressed: () {
-//                     setState(() {
-//                       currentTab = 2;
-//                       currentScreen = const CartScreen();
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       currentTab == 2
-//                           ? SVGIcons.activeBuyIcon()
-//                           : SVGIcons.buyIcon(),
-//                       SizedBox(
-//                         height: 3,
-//                       ),
-//                       Text(
-//                         listTabsName[2],
-//                         style: currentTab == 2
-//                             ? AppTheme
-//                                 .styleWithTextRedAdelleSansExtendedFonts11w500
-//                             : AppTheme
-//                                 .styleWithTextGray7AdelleSansExtendedFonts11w500,
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 MaterialButton(
-//                   onPressed: () {
-//                     setState(() {
-//                       currentScreen = const WishListScreen();
-//                       currentTab = 3;
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       currentTab == 3
-//                           ? SVGIcons.hartActiveIcon()
-//                           : SVGIcons.hartUnActiveIcon(),
-//                       SizedBox(
-//                         height: 6,
-//                       ),
-//                       Text(
-//                         listTabsName[3],
-//                         style: currentTab == 3
-//                             ? AppTheme
-//                                 .styleWithTextRedAdelleSansExtendedFonts11w500
-//                             : AppTheme
-//                                 .styleWithTextGray7AdelleSansExtendedFonts11w500,
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 MaterialButton(
-//                   onPressed: () {
-//                     setState(() {
-//                       currentScreen = const MoreScreen();
-//                       currentTab = 4;
-//                     });
-//                   },
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       currentTab == 4
-//                           ? SVGIcons.moreActiveIcon()
-//                           : SVGIcons.moreUnActiveIcon(),
-//                       SizedBox(
-//                         height: 6,
-//                       ),
-//                       Text(
-//                         listTabsName[4],
-//                         style: currentTab == 4
-//                             ? AppTheme
-//                                 .styleWithTextRedAdelleSansExtendedFonts11w500
-//                             : AppTheme
-//                                 .styleWithTextGray7AdelleSansExtendedFonts11w500,
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   void onItemTapped(int tabIndex) {
-//     setState(() {
-//       switch (tabIndex) {
-//         case 0:
-//           currentScreen = const HomeScreen();
-//           break;
-//         case 1:
-//           currentScreen = const OrdersScreen();
-//         case 2:
-//           currentScreen = const CartScreen();
-//           break;
-//         case 3:
-//           currentScreen = const WishListScreen();
-//           break;
-//         case 4:
-//           currentScreen = const MoreScreen();
-//           break;
-//       }
-//       currentTab = tabIndex;
-//     });
-//   }
-// }
-//
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_base/core/Theme/app_theme.dart';
+import 'package:flutter_base/core/constants/Assets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+import '../home/persentaion/home_screen.dart';
+
+class MainScreenNavHost extends ConsumerStatefulWidget {
+  const MainScreenNavHost({super.key});
+
+  @override
+  ConsumerState<MainScreenNavHost> createState() => MainScreenNavHostState();
+}
+
+class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with TickerProviderStateMixin {
+  double horizontalPadding = 40.0;
+  double horizontalMargin = 0.0;
+  int noOfIcons = 4;
+
+  List<Map<String, dynamic>> items = [
+    {"icon": homeIconPath, "label": "Home"},
+    {"icon": calendarIconPath, "label": "Calendar"},
+    {"icon": orderIconPath, "label": "Orders"},
+    {"icon": searchIconPath, "label": "Search"},
+  ];
+
+  List<Widget> screens = [
+    Container(
+      color: AppTheme.gray,
+    ),
+    Container(
+      color: AppTheme.gray,
+    ),
+    Container(
+      color: AppTheme.gray,
+    ),
+    Container(
+      color: AppTheme.gray,
+    ),
+  ];
+
+  late double position;
+  int selected = 0;
+
+  late AnimationController controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 375));
+
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    animation = Tween(
+        begin: getEndPosition(0),
+        end: getEndPosition(0))
+        .animate(controller);
+    position = getEndPosition(0);
+    super.didChangeDependencies();
+  }
+
+  double getEndPosition(int index) {
+    double totalMargin = 2 * horizontalMargin;
+    double totalPadding = 2 * horizontalPadding;
+    double valueToOmit = totalMargin + totalPadding;
+
+    return (((MediaQuery.of(context).size.width - valueToOmit) / noOfIcons) *
+        index +
+        horizontalPadding) +
+        (((MediaQuery.of(context).size.width - valueToOmit) / noOfIcons) / 2) - 70;
+  }
+
+  void animateDrop(int index) {
+    animation = Tween(
+        begin: position,
+        end: getEndPosition(index))
+        .animate(
+        CurvedAnimation(parent: controller, curve: Curves.easeOutBack));
+    controller.forward().then((value) {
+      position = getEndPosition(index);
+      controller.dispose();
+      controller = AnimationController(
+          vsync: this, duration: const Duration(milliseconds: 575));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 575),
+              child: screens[selected],
+            ),
+          ),
+          Positioned(
+            bottom: horizontalMargin,
+            left: horizontalMargin,
+            child: AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                return CustomPaint(
+                  painter: AppBarPainter(animation.value),
+                  size: Size(
+                      MediaQuery.of(context).size.width - (2 * horizontalMargin),
+                      80.0),
+                  child: SizedBox(
+                    height: 120.0, // Increased height to accommodate text
+                    width: MediaQuery.of(context).size.width - (2 * horizontalMargin),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: items.map<Widget>((item) {
+                          int index = items.indexOf(item);
+                          return Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  animateDrop(index);
+                                  selected = index;
+                                });
+                              },
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AnimatedContainer(
+                                    duration: const Duration(milliseconds: 375),
+                                    curve: Curves.easeOut,
+                                    height: 50, // Reduced height for better alignment
+                                    width: 50,
+                                    alignment: selected == index
+                                        ? Alignment.topCenter
+                                        : Alignment.bottomCenter,
+                                    child: SvgPicture.asset(
+                                      item["icon"],
+                                      key: ValueKey(item["icon"]),
+                                      width: 30.0,
+                                      color: selected == index
+                                          ? Colors.white
+                                          : AppTheme.appGrey7,
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.symmetric(vertical: 8.0),
+                                    child: Text(
+                                      item["label"],
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color: selected == index
+                                            ? AppTheme.mainAppColor
+                                            : AppTheme.appGrey7,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AppBarPainter extends CustomPainter {
+  double x;
+
+  AppBarPainter(this.x);
+
+  double height = 80.0;
+  double start = 35.0;
+  double end = 120;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Colors.white
+      ..style = PaintingStyle.fill;
+
+    var circlePaint = Paint()
+      ..color = AppTheme.mainAppColor
+      ..style = PaintingStyle.fill;
+
+    Path path = Path();
+    path.moveTo(0.0, start);
+
+    /// DROP paths, included X for animation
+    path.lineTo((x) < 20.0 ? 20.0 : x, start);
+    path.quadraticBezierTo(30.0 + x, start, 36.0 + x, start + 30.0);
+    path.quadraticBezierTo(45.0 + x, start + 54.0, 67.0 + x, start + 55.0);
+    path.quadraticBezierTo(98.0 + x, start + 58.0, 108.0 + x, start + 15.0);
+    path.quadraticBezierTo(
+        115.0 + x,
+        start,
+        (140.0 + x) > (size.width - 20.0) ? (size.width - 20.0) : 135 + x,
+        start);
+    path.lineTo(size.width - 20.0, start);
+
+    /// Box with BorderRadius
+    path.quadraticBezierTo(size.width, start, size.width, start );
+    path.lineTo(size.width, end - 25.0);
+    path.quadraticBezierTo(size.width, end, size.width, end);
+    path.lineTo(25.0, end);
+    path.quadraticBezierTo(0.0, end, 0.0, end );
+    path.lineTo(0.0, start );
+    path.quadraticBezierTo(0.0, start, 20.0, start);
+    path.close();
+
+    canvas.drawPath(path, paint);
+
+    /// Circle to show at the top of the drop
+    canvas.drawCircle(Offset(x + 70.0, 55.0), 26.0, circlePaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
 // class AppBarTrailing extends StatelessWidget {
 //   final int currentTab;
 //   const AppBarTrailing({super.key, required this.currentTab});

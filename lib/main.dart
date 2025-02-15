@@ -6,6 +6,7 @@ import 'package:flutter_base/core/constants/eunms.dart';
 import 'package:flutter_base/features/auth/presentation/screens/change_password_screen.dart';
 import 'package:flutter_base/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:flutter_base/features/location/presentation/screens/location_permission_screen.dart';
+import 'package:flutter_base/features/main/main_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -137,7 +138,7 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: splashScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
-            LocationPermissionScreen(),
+            const MainScreen(),
       ),
       GoRoute(
         path: loginScreenRoute,
