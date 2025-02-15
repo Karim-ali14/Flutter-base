@@ -5,7 +5,12 @@ import 'package:flutter_base/core/Constants/Constants.dart';
 import 'package:flutter_base/core/constants/eunms.dart';
 import 'package:flutter_base/features/auth/presentation/screens/change_password_screen.dart';
 import 'package:flutter_base/features/auth/presentation/screens/forget_password_screen.dart';
-import 'package:flutter_base/features/home/persentaion/home_screen.dart';
+
+import 'package:flutter_base/features/home/persentaion/home_screen.dart'
+import 'package:flutter_base/features/location/presentation/screens/location_permission_screen.dart';
+import 'package:flutter_base/features/location/presentation/screens/search_location_screen.dart';
+import 'package:flutter_base/features/notification/presentation/screens/notification_permission_screen.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,6 +20,8 @@ import 'core/constants/app_routes.dart';
 import 'features/auth/presentation/screens/login_screen.dart';
 import 'features/auth/presentation/screens/otp_screen.dart';
 import 'features/auth/presentation/screens/sign_up_screen.dart';
+import 'features/auth/presentation/screens/splash_screen.dart';
+import 'features/home/presentation/screens/cuisines_screen.dart';
 
 late SharedPreferences prefs;
 
@@ -136,7 +143,9 @@ class MyApp extends ConsumerWidget {
     routes: <GoRoute>[
       GoRoute(
         path: splashScreenRoute,
-        builder: (BuildContext context, GoRouterState state) => HomeScreen(),
+
+        builder: (BuildContext context, GoRouterState state) => SplashScreen(),
+
       ),
       GoRoute(
         path: loginScreenRoute,
@@ -168,6 +177,26 @@ class MyApp extends ConsumerWidget {
         path: forgetPasswordScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
             ForgetPasswordScreen(),
+      ),
+      GoRoute(
+        path: locationPermissionScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            LocationPermissionScreen(),
+      ),
+      GoRoute(
+        path: notificationPermissionScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            NotificationPermissionScreen(),
+      ),
+      GoRoute(
+        path: searchLocationScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            SearchLocationScreen(),
+      ),
+      GoRoute(
+        path: cuisinesScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            CuisinesScreen(),
       ),
     ],
   );

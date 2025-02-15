@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -9,14 +7,13 @@ import '../../../../core/Theme/app_theme.dart';
 class TimerText extends StatefulWidget {
   final int? durationSeconds;
   final VoidCallback? onTimerFinish;
-  const TimerText({super.key,this.durationSeconds,this.onTimerFinish});
+  const TimerText({super.key, this.durationSeconds, this.onTimerFinish});
 
   @override
   State<TimerText> createState() => TimerTextState();
 }
 
 class TimerTextState extends State<TimerText> {
-
   final StreamController<int> _timerStreamController = StreamController<int>();
   late Timer _timer;
   int _secondsElapsed = 0;
@@ -37,7 +34,7 @@ class TimerTextState extends State<TimerText> {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: /*_formatDuration(snapshot.data!)*/"",
+                text: /*_formatDuration(snapshot.data!)*/ "",
                 style: const TextStyle(
                   color: AppTheme.mainAppColor, // Set the color to green
                   fontSize: 16.0,
@@ -77,7 +74,7 @@ class TimerTextState extends State<TimerText> {
     });
   }
 
-  void restart(){
+  void restart() {
     setState(() {
       _timer.cancel();
       _totalSeconds = widget.durationSeconds ?? 90;
@@ -91,5 +88,4 @@ class TimerTextState extends State<TimerText> {
     int remainingSeconds = seconds % 60;
     return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
   }
-
 }
