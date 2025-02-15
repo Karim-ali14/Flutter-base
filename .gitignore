@@ -28,6 +28,7 @@ migrate_working_dir/
 .flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
+ macos/
 .pub/
 /build/
 
@@ -41,3 +42,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/app/.cxx/Debug
