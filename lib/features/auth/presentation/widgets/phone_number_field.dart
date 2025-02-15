@@ -4,6 +4,8 @@ import 'package:flutter_base/core/widgets/svg_icons.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/intl_phone_field.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/phone_number.dart';
 
+import '../../../../core/widgets/border_styles.dart';
+
 class PhoneNumberField extends StatelessWidget {
   final TextEditingController? controller;
   final void Function(PhoneNumber)? onChanged;
@@ -22,6 +24,7 @@ class PhoneNumberField extends StatelessWidget {
         ),
         SizedBox(height: 8),
         IntlPhoneField(
+          cursorColor: AppTheme.mainAppColor,
           dropdownTextStyle: AppTheme.fontStyle16color333740,
           dropdownIcon: SVGIcons.localSVG(
             "assets/images/arrowdown.svg",
@@ -29,23 +32,15 @@ class PhoneNumberField extends StatelessWidget {
             height: 20,
           ),
           decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
             hintText: "Enter phone number",
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: AppTheme.gray),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppTheme.gray),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppTheme.blue),
-              borderRadius: BorderRadius.circular(8),
-            ),
+            focusedBorder:
+                AppBorders.getBorder(borderColor: AppTheme.mainAppColor),
+            errorBorder: AppBorders.getErrorBorder(),
+            focusedErrorBorder: AppBorders.getErrorBorder(),
+            enabledBorder: AppBorders.getEnableBorder(),
+            disabledBorder: AppBorders.getBorder(),
           ),
           initialCountryCode: 'US', // Set the default country
           onChanged: onChanged,
