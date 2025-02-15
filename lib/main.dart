@@ -6,6 +6,8 @@ import 'package:flutter_base/core/constants/eunms.dart';
 import 'package:flutter_base/features/auth/presentation/screens/change_password_screen.dart';
 import 'package:flutter_base/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:flutter_base/features/location/presentation/screens/location_permission_screen.dart';
+import 'package:flutter_base/features/location/presentation/screens/search_location_screen.dart';
+import 'package:flutter_base/features/notification/presentation/screens/notification_permission_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -137,7 +139,7 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: splashScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
-            LocationPermissionScreen(),
+            SearchLocationScreen(),
       ),
       GoRoute(
         path: loginScreenRoute,
@@ -174,6 +176,16 @@ class MyApp extends ConsumerWidget {
         path: locationPermissionScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
             LocationPermissionScreen(),
+      ),
+      GoRoute(
+        path: notificationPermissionScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            NotificationPermissionScreen(),
+      ),
+      GoRoute(
+        path: searchLocationScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            SearchLocationScreen(),
       ),
     ],
   );

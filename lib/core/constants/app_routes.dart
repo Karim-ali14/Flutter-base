@@ -7,4 +7,7 @@ const signUpScreenRoute = '/signUp';
 const changePasswordScreenRoute = '/changePassword';
 const forgetPasswordScreenRoute = '/forgetPassword';
 const locationPermissionScreenRoute = '/LocationPermission';
+const notificationPermissionScreenRoute = '/notificationPermission';
+const searchLocationScreenRoute = '/searchLocationScreen';
+
 const otpScreenRoute = '/otp';
