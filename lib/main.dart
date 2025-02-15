@@ -17,6 +17,7 @@ import 'core/constants/app_routes.dart';
 import 'features/auth/presentation/screens/login_screen.dart';
 import 'features/auth/presentation/screens/otp_screen.dart';
 import 'features/auth/presentation/screens/sign_up_screen.dart';
+import 'features/home/presentation/screens/cuisines_screen.dart';
 
 late SharedPreferences prefs;
 
@@ -139,7 +140,7 @@ class MyApp extends ConsumerWidget {
       GoRoute(
         path: splashScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
-            SearchLocationScreen(),
+            CuisinesScreen(),
       ),
       GoRoute(
         path: loginScreenRoute,
@@ -186,6 +187,11 @@ class MyApp extends ConsumerWidget {
         path: searchLocationScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
             SearchLocationScreen(),
+      ),
+      GoRoute(
+        path: cuisinesScreenRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            CuisinesScreen(),
       ),
     ],
   );
