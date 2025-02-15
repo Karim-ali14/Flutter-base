@@ -11,8 +11,9 @@ class AppTheme {
   static const Color secondaryAppColorLight = Color(0xFF4FC2FF);
   static const Color secondaryAppColorDark = Color(0xFF439FD0);
   static const Color secondaryTempAppColorDark = Color(0xFFF04741);
-  static const Color green = Color(0xFF23B574);
   static const Color gray = Color(0xFFD0D1D4);
+  static const Color lightGreen = Color(0xFFE7F6E5);
+  static const Color appGreen = Color(0xFF0DA500);
 
   static const Color appGrey = Color(0xFFBEBEBE); //#E5E5E5
   static const Color appGrey2 = Color(0xFFECEDEE);
@@ -28,7 +29,10 @@ class AppTheme {
   static const Color appGrey12 = Color(0xFFEBECEF);
   static const Color appGrey13 = Color(0xFF667085);
   static const Color appGrey14 =
-      Color(0x14000000); // box-shadow: 0px -6px 16px 0px #00000014;
+  Color(0x14000000); // box-shadow: 0px -6px 16px 0px #00000014;
+
+  static const Color appHeaderOne = Color(0xFF225268);
+  static const Color appHeaderTwo = Color(0xFF2298B8);
 
   static const Color appGunmetal = Color(0xFF333740);
   static const Color appLightGrey = Color(0xFFe5e5e5);
@@ -45,6 +49,8 @@ class AppTheme {
   static const Color lightAlert = Color(0xFFeb6866);
   static const Color blue = Color(0xFF1256d2);
   static const Color appBlue = Color(0xFF0582D2);
+
+  static const Color appRed = Color(0xFFFF3B30);
 
   static const Color selectedBackgroundColor = Color(0xFF23B574);
   static const Color mainBackgroundLightColor = Color(0xFFFCFCFC);
@@ -106,7 +112,7 @@ class AppTheme {
   );
 
   static final mediumBodyBlue =
-      appTextTheme.bodyMedium?.copyWith(color: AppTheme.mainAppColor);
+  appTextTheme.bodyMedium?.copyWith(color: AppTheme.mainAppColor);
 
   static final mediumBodyBlue2 = appTextTheme.bodyMedium
       ?.copyWith(color: AppTheme.mainAppColor, fontSize: 14);
@@ -129,13 +135,13 @@ class AppTheme {
           backgroundColor: Colors.transparent,
           collapsedBackgroundColor: Colors.transparent),
       radioTheme:
-          RadioThemeData(fillColor: MaterialStateProperty.all(appSwatch)),
+      RadioThemeData(fillColor: MaterialStateProperty.all(appSwatch)),
       hintColor: Colors.grey,
       fontFamily: 'Proxima',
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all(mainBackgroundDarkColor))),
+              MaterialStateProperty.all(mainBackgroundDarkColor))),
       popupMenuTheme: const PopupMenuThemeData(color: Colors.white),
       checkboxTheme: CheckboxThemeData(
           checkColor: MaterialStateProperty.all(Colors.white),
@@ -150,7 +156,7 @@ class AppTheme {
 
   // Text style
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts20w700 =
-      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700);
+  TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700);
   static const TextStyle styleblack16normal = TextStyle(
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal);
   static const TextStyle styleColorAppGunmetal40FontSize20W700 =
@@ -168,69 +174,85 @@ class AppTheme {
       fontWeight: FontWeight.w700,
       fontFamily: "cairepro");
 
+  static const TextStyle styleWithAppGrey7Fonts14w400 = TextStyle(
+      color: appGrey7, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static const TextStyle styleWithMainAppColor7Fonts14w400 = TextStyle(
+      color: mainAppColor, fontSize: 14, fontWeight: FontWeight.w400);
+
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts32w400 =
-      TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w400);
+  TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts18w700 =
-      TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700);
+  TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts18w400 =
-      TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w400);
+  TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w400);
+
+  static const TextStyle styleWithTextBlackAdelleSansExtendedFonts18w500 =
+  TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts16w700 =
-      TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w700);
+  TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w700);
 
   static const TextStyle styleWithTextGray7AdelleSansExtendedFonts16w400 =
-      TextStyle(color: appGrey7, fontSize: 16, fontWeight: FontWeight.w400);
+  TextStyle(color: appGrey7, fontSize: 16, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextRedAdelleSansExtendedFonts16w400 =
-      TextStyle(color: mainAppColor, fontSize: 16, fontWeight: FontWeight.w400);
+  TextStyle(color: mainAppColor, fontSize: 16, fontWeight: FontWeight.w400);
 
   static const TextStyle fontStyle16color333740 = TextStyle(
       color: Color(0xff333740), fontWeight: FontWeight.w400, fontSize: 16);
   static const TextStyle styleWithTextGray7AdelleSansExtendedFonts12w400 =
-      TextStyle(color: appGrey7, fontSize: 12, fontWeight: FontWeight.w400);
+  TextStyle(color: appGrey7, fontSize: 12, fontWeight: FontWeight.w400);
+
+  static const TextStyle styleWithTextGreenAdelleSansExtendedFonts12w400 =
+  TextStyle(color: appGreen, fontSize: 12, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextGray13AdelleSansExtendedFonts11w400 =
-      TextStyle(color: appGrey13, fontSize: 11, fontWeight: FontWeight.w400);
+  TextStyle(color: appGrey13, fontSize: 11, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextGray7AdelleSansExtendedFonts11w500 =
-      TextStyle(color: appGrey7, fontSize: 11, fontWeight: FontWeight.w500);
+  TextStyle(color: appGrey7, fontSize: 11, fontWeight: FontWeight.w500);
 
   static const TextStyle styleWithTextRedAdelleSansExtendedFonts11w500 =
-      TextStyle(color: mainAppColor, fontSize: 11, fontWeight: FontWeight.w500);
+  TextStyle(color: mainAppColor, fontSize: 11, fontWeight: FontWeight.w500);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts16w400 =
-      TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400);
+  TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts16w500 =
-      TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
+  TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
 
   static const TextStyle styleWithTextRedAdelleSansExtendedFonts16w500 =
-      TextStyle(color: mainAppColor, fontSize: 16, fontWeight: FontWeight.w500);
+  TextStyle(color: mainAppColor, fontSize: 16, fontWeight: FontWeight.w500);
+
+  static const TextStyle styleWithTextWhiteAdelleSansExtendedFonts16w500 =
+  TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500);
 
   // static const TextStyle styleWithTextRedAdelleSansExtendedFonts16w400 = TextStyle(
   //     color: mainAppColor , fontSize: 16, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts14w400 =
-      TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+  TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400);
+
+  static const TextStyle styleWithTextWhiteAdelleSansExtendedFonts14w400 =
+  TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextAppGrey4RegularFonts14w400 =
-      TextStyle(color: appGrey4, fontSize: 14, fontWeight: FontWeight.w400);
+  TextStyle(color: appGrey4, fontSize: 14, fontWeight: FontWeight.w400);
 
   static const TextStyle style14normalblack = TextStyle(
       color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal);
   static const TextStyle style14BoldBlack =
-      TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold);
+  TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold);
 
   static const TextStyle styleWithTextBlackAdelleSansExtendedFonts14w500 =
-      TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500);
+  TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500);
 
-  static const TextStyle styleWithTextWhiteAdelleSansExtendedFonts14w400 =
-      TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400);
 
   static const TextStyle styleWithTextAppGrey7AdelleSansExtendedFonts14w400 =
-      TextStyle(color: appGrey7, fontSize: 14, fontWeight: FontWeight.w400);
+  TextStyle(color: appGrey7, fontSize: 14, fontWeight: FontWeight.w400);
 
   static ThemeData darkTheme = ThemeData(
     primaryColor: secondaryAppColorDark,
@@ -250,12 +272,12 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all(mainBackgroundDarkColor))),
+            MaterialStateProperty.all(mainBackgroundDarkColor))),
     checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.all(Colors.white),
         fillColor: MaterialStateProperty.all(appSwatch)),
     popupMenuTheme:
-        const PopupMenuThemeData(color: mainBackgroundSemiDarkColor),
+    const PopupMenuThemeData(color: mainBackgroundSemiDarkColor),
     cardColor: cardColor,
     textTheme: appTextTheme,
     bottomAppBarTheme: BottomAppBarTheme(color: mainBackgroundSemiDarkColor),
@@ -264,7 +286,7 @@ class AppTheme {
   );
 
   static ThemeData expandedTileTheme =
-      ThemeData(dividerColor: Colors.transparent);
+  ThemeData(dividerColor: Colors.transparent);
 }
 
 const appGradiant = LinearGradient(
@@ -275,13 +297,13 @@ const appGradiant = LinearGradient(
 
 class TextFormatters {
   static FilteringTextInputFormatter onlyLetters =
-      FilteringTextInputFormatter.allow(RegExp('[a-z A-Z ا-ي]'));
+  FilteringTextInputFormatter.allow(RegExp('[a-z A-Z ا-ي]'));
   static FilteringTextInputFormatter nonStartingZero =
-      FilteringTextInputFormatter.deny(
+  FilteringTextInputFormatter.deny(
     RegExp(r'^0+'),
   );
   static FilteringTextInputFormatter nonArabicPhone =
-      FilteringTextInputFormatter.allow(
+  FilteringTextInputFormatter.allow(
     RegExp('[0-9]'),
   );
 }

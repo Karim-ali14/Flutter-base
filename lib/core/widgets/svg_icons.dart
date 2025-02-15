@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/core/constants/assets.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../constants/Assets.dart';
 
 class SVGIcons {
   static Widget shareIcon(){
@@ -19,6 +18,11 @@ class SVGIcons {
       width: 30,
       height: 30,
     );
+  }
+
+  static Widget searchIcon() {
+    return SvgPicture.asset(searchIconPath,
+        width: 20, height: 20, fit: BoxFit.scaleDown);
   }
 
   static Widget localSVG(String assetPath, {double width = 50, double height = 50 , Color? color}) {

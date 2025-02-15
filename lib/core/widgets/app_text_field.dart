@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_base/core/Theme/app_theme.dart';
+import 'package:flutter_base/core/widgets/border_styles.dart';
+import 'package:flutter_base/core/widgets/border_styles.dart';
+
+import '../constants/constants.dart';
 
 typedef StringCallBack = Function(String);
 
@@ -109,6 +114,7 @@ class _AppTextFieldState extends State<AppTextField> {
                     color: Theme.of(context).textTheme.bodyMedium!.color,
                     fontSize: 16),
             decoration: InputDecoration(
+                contentPadding: defaultPaddingForInputFields,
                 errorMaxLines: widget.errorMaxLine,
                 label: widget.label,
                 suffixText: widget.endText,
@@ -129,11 +135,19 @@ class _AppTextFieldState extends State<AppTextField> {
                     fontSize: 15,
                     fontWeight: FontWeight.w100,
                     color: Theme.of(context).textTheme.bodyMedium!.color),
-                focusedBorder: getBorder,
-                errorBorder: getErrBorder,
-                focusedErrorBorder: getErrBorder,
-                enabledBorder: getEnbleBorder,
-                disabledBorder: getBorder,
+                focusedBorder: AppBorders.getBorder(
+                  borderColor: widget.textFieldBorderColor ?? AppTheme.mainAppColor
+                ),
+                errorBorder: AppBorders.getErrorBorder(
+                  radius: widget.borderRidus ?? BorderRadius.circular(4)
+                ),
+                focusedErrorBorder: AppBorders.getErrorBorder(
+                    radius: widget.borderRidus ?? BorderRadius.circular(4)
+                ),
+                enabledBorder: AppBorders.getEnableBorder(),
+                disabledBorder: AppBorders.getBorder(
+                  borderColor: widget.textFieldEnableBorderColor ?? AppTheme.appGrey8
+                ),
                 filled: true,
                 counter: SizedBox(),
                 enabled: widget.disabled != null ? (!widget.disabled!) : true,
@@ -143,33 +157,33 @@ class _AppTextFieldState extends State<AppTextField> {
     );
   }
 
-  InputBorder get getBorder => widget.textFieldBorderColor != null
-      ? OutlineInputBorder(
-          borderSide:
-              BorderSide(color: widget.textFieldBorderColor ?? Colors.blue),
-          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
-        )
-      : UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
-        );
-  InputBorder get getEnbleBorder => widget.textFieldBorderColor != null
-      ? OutlineInputBorder(
-          borderSide: BorderSide(
-              color: widget.textFieldEnableBorderColor ?? Colors.grey),
-          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
-        )
-      : UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
-        );
-  InputBorder get getErrBorder => widget.textFieldBorderColor != null
-      ? OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
-          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
-        )
-      : UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
-        );
+  // InputBorder get getBorder => widget.textFieldBorderColor != null
+  //     ? OutlineInputBorder(
+  //         borderSide:
+  //             BorderSide(color: widget.textFieldBorderColor ?? Colors.blue),
+  //         borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+  //       )
+  //     : UnderlineInputBorder(
+  //         borderSide: BorderSide(color: Colors.transparent),
+  //         borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+  //       );
+  // InputBorder get getEnbleBorder => widget.textFieldBorderColor != null
+  //     ? OutlineInputBorder(
+  //         borderSide: BorderSide(
+  //             color: widget.textFieldEnableBorderColor ?? AppTheme.appGrey8),
+  //         borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+  //       )
+  //     : UnderlineInputBorder(
+  //         borderSide: BorderSide(color: Colors.transparent),
+  //         borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+  //       );
+  // InputBorder get getErrBorder => widget.textFieldBorderColor != null
+  //     ? OutlineInputBorder(
+  //         borderSide: BorderSide(color: Colors.red),
+  //         borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+  //       )
+  //     : UnderlineInputBorder(
+  //         borderSide: BorderSide(color: Colors.transparent),
+  //         borderRadius: widget.borderRidus ?? BorderRadius.circular(4),
+  //       );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_base/core/utils/FaceIDHelper.dart';
+import 'package:flutter_base/core/utils/extensions/request_handle_extension.dart';
 import 'package:flutter_base/core/widgets/svg_icons.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/phone_number_field.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import '../../../../core/constants/assets.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../providers/auth_validation_providers.dart';
+import '../providers/usecase_provider.dart';
 import '../widgets/auth_header_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +39,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final validationLoginState = ref.watch(loginProvider);
+
+    handleState(loginStateNotifierProvider,showLoading: true,onSuccess: (res){
+      // handle success event
+    });
+
     return Scaffold(
       appBar: CustomAppBar(
         navigated: true,
@@ -110,7 +117,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         enabled: validationLoginState,
                         height: defaultButtonHeight,
                         text: "Sign In",
-                        onPress: () {}),
+                        onPress: login),
                   ),
                   SizedBox(
                     width: defaultPaddingHorizontal,
@@ -243,5 +250,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void _signInWithFaceId() async{
     bool isSuccess = await FaceIDHelper.authenticateWithFaceID();
     print("process is : $isSuccess");
+  }
+
+  void login() {
+    ref.read(loginStateNotifierProvider.notifier).call(
+      phoneNumber: _phoneController.text,
+      password: _passwordController.text
+    );
   }
 }

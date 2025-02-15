@@ -326,7 +326,8 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       // remove country code from the initial number value
       number = number.replaceFirst(
           RegExp("^${_selectedCountry.fullCountryCode}"), "");
-    } else {
+    }
+    else {
       _selectedCountry = _countryList.firstWhere(
           (item) => item.code == (widget.initialCountryCode ?? 'US'),
           orElse: () => _countryList.first);
@@ -407,6 +408,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       onFieldSubmitted: widget.onSubmitted,
       magnifierConfiguration: widget.magnifierConfiguration,
       decoration: widget.decoration.copyWith(
+        contentPadding: const EdgeInsets.symmetric(vertical: 23.0, horizontal: 10.0),
         prefixIcon: _buildFlagsButton(),
         counterText: !widget.enabled ? '' : null,
       ),
@@ -447,7 +449,6 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
         return validatorMessage;
       } */
-      maxLength: widget.disableLengthCheck ? null : _selectedCountry.maxLength,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
       enabled: widget.enabled,
@@ -511,7 +512,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 Container(
                   width: 2,
                   height: 24,
-                  color: Color(0xff9137ff),
+                  color: AppTheme.mainAppColor,
                 ),
                 const SizedBox(width: 8),
               ],
