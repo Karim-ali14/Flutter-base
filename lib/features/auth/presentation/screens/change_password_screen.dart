@@ -61,8 +61,8 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
           key: formKey,
           child: Container(
             height: double.infinity,
-            padding:
-            const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPaddingHorizontal),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +75,9 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
                     isvisible: isPasswordVisible,
                     suffixIcon: IconButton(
                       icon: Icon(
-                        isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: AppTheme.gray,
                       ),
                       onPressed: () {
@@ -86,6 +88,12 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
                     ),
                     controller: newPasswordController,
                     hint: /* context.tr(OldPasswordKey) */ ".......",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "New Password is required";
+                      }
+                      return null;
+                    },
                     label: Text(
                       /* context.tr(OldPasswordKey) */ "New Password",
                       style: AppTheme.style14normalblack,
@@ -96,7 +104,9 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
                     isvisible: isPasswordVisible,
                     suffixIcon: IconButton(
                       icon: Icon(
-                        isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: AppTheme.gray,
                       ),
                       onPressed: () {
@@ -105,6 +115,14 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
                         });
                       },
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Confirem New Password is required";
+                      } else if (value != newPasswordController.text) {
+                        return "Passwords do not match";
+                      }
+                      return null;
+                    },
                     controller: confirmPasswordController,
                     hint: /* context.tr(OldPasswordKey) */ ".......",
                     label: Text(
@@ -130,7 +148,9 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
                         //     return PasswordResetBottomSheet();
                         //   },
                         // );
-                        showSuccessBottomSheet();
+                        if (formKey.currentState!.validate()) {
+                          showSuccessBottomSheet();
+                        }
                       }),
                 ],
               ),
@@ -160,7 +180,7 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
     ref.read(changePasswordProvider.notifier).updateStatue(allFull);
   }
 
-  void showSuccessBottomSheet(){
+  void showSuccessBottomSheet() {
     showModalBottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.white,
@@ -169,13 +189,12 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
                 topRight: Radius.circular(10), topLeft: Radius.circular(10))),
         context: context,
         builder: (BuildContext context) => SuccessBottomSheet(
-          imageWidget: SVGIcons.localImage(successAnimation,width: 100 , height: 100),
-          title: "Password Reset Successfully",
-          description: "Your password has been updated",
-          btnName: "Save",
-          clickAction: () {
-
-          },
-        ));
+              imageWidget: SVGIcons.localImage(successAnimation,
+                  width: 100, height: 100),
+              title: "Password Reset Successfully",
+              description: "Your password has been updated",
+              btnName: "Save",
+              clickAction: () {},
+            ));
   }
 }

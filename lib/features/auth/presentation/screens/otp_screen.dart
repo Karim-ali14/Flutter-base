@@ -1,24 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/core/Utils/Extintions.dart';
 import 'package:flutter_base/core/constants/app_routes.dart';
 import 'package:flutter_base/core/localization/Keys.dart';
 import 'package:flutter_base/features/auth/presentation/widgets/auth_header_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/Constants/Constants.dart';
 import '../../../../core/Theme/app_theme.dart';
 import '../../../../core/constants/eunms.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../widgets/otp_fields.dart';
-import '../../../../core/widgets/svg_icons.dart';
 import '../providers/auth_validation_providers.dart';
 import '../widgets/timer_counter.dart';
-
 
 class OTPScreen extends ConsumerStatefulWidget {
   final String phone;
@@ -28,7 +23,14 @@ class OTPScreen extends ConsumerStatefulWidget {
   final String? name;
   final OTPType otpType;
   // final TypeOfMode? typeOfMode;
-  const OTPScreen( {super.key,/*this.typeOfMode = TypeOfMode.ViewMode*/required this.phone,required this.otpType,this.cityId, this.email, this.image, this.name});
+  const OTPScreen(
+      {super.key,
+      /*this.typeOfMode = TypeOfMode.ViewMode*/ required this.phone,
+      required this.otpType,
+      this.cityId,
+      this.email,
+      this.image,
+      this.name});
 
   @override
   ConsumerState<OTPScreen> createState() => _OtpScreenState();
@@ -45,7 +47,7 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
     return Scaffold(
       appBar: CustomAppBar(
           appContext: context,
-          title:context.tr(otpKey),
+          title: context.tr(otpKey),
           navigated: true,
           isCenter: false,
           trailingWidget: Padding(
@@ -67,7 +69,7 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
                 marginBottom: 48,
               ),
               Text(
-              "Please Enter the code we just sent to ",
+                "Please Enter the code we just sent to ",
                 style: AppTheme.styleWithTextGray7AdelleSansExtendedFonts16w400,
               ),
               const SizedBox(
@@ -82,14 +84,16 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
                           style: AppTheme
                               .styleWithTextGray7AdelleSansExtendedFonts16w400,
                           children: <TextSpan>[
-                            TextSpan(
-                                text: widget.phone,
-                                style: AppTheme
-                                    .styleWithTextBlackAdelleSansExtendedFonts16w700.copyWith(
-                                  decoration: TextDecoration.underline, // Underline the text
-                                ),
-                            )
-                          ])),
+                        TextSpan(
+                          text: widget.phone,
+                          style: AppTheme
+                              .styleWithTextBlackAdelleSansExtendedFonts16w700
+                              .copyWith(
+                            decoration:
+                                TextDecoration.underline, // Underline the text
+                          ),
+                        )
+                      ])),
                   const SizedBox(
                     width: 8,
                   ),
@@ -98,48 +102,65 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
                   // }),
                 ],
               ),
-              const SizedBox(height: 40,),
-              OTPFields(key: otpFieldsKeys,),
-              const SizedBox(height: 24,),
+              const SizedBox(
+                height: 40,
+              ),
+              OTPFields(
+                key: otpFieldsKeys,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: TimerText(key: timerKey,onTimerFinish: (){
-                        setState(() {
-                          readyToResendOtp = true;
-                        });
-                      },)
-                  ),
+                      child: TimerText(
+                        key: timerKey,
+                        onTimerFinish: () {
+                          setState(() {
+                            readyToResendOtp = true;
+                          });
+                        },
+                      )),
                   RichText(
                     text: TextSpan(
                       text: "Resend Code",
                       style: TextStyle(
-                        color: readyToResendOtp ? AppTheme.mainAppColor : AppTheme.appGrey3, // Set the color to green
+                        color: readyToResendOtp
+                            ? AppTheme.mainAppColor
+                            : AppTheme.appGrey3, // Set the color to green
                         fontSize: 16.0,
-                        decoration: TextDecoration.underline, // Underline the text
+                        decoration:
+                            TextDecoration.underline, // Underline the text
                       ),
-                      recognizer: TapGestureRecognizer()..onTap = !readyToResendOtp ? null : (){
-                        // sendOtp();
-                        setState(() {
-                          readyToResendOtp = false;
-                        });
-                      },
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = !readyToResendOtp
+                            ? null
+                            : () {
+                                // sendOtp();
+                                setState(() {
+                                  readyToResendOtp = false;
+                                });
+                              },
                     ),
                   )
                 ],
               ),
-              const SizedBox(height: 32,),
-              Padding(padding : const EdgeInsets.symmetric(horizontal: defaultPaddingHorizontal),
+              const SizedBox(
+                height: 32,
+              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPaddingHorizontal),
                   child: AppButton(
-                    enabled: optState,
+                      enabled: optState,
                       width: double.infinity,
                       height: defaultButtonHeight,
                       backColor: AppTheme.mainAppColor,
                       text: "Verify",
-                      onPress: verify)
-              ),
+                      onPress: verify)),
             ],
           ),
         ),
@@ -217,10 +238,10 @@ class _OtpScreenState extends ConsumerState<OTPScreen> {
 */
 
   void verify() {
-    if(widget.otpType == OTPType.SignUp){
-       // go to home
-    }else if (widget.otpType == OTPType.Update){
-      context.push(changePasswordScreenRoute,extra: {PHONE_KEY : widget.phone});
+    if (widget.otpType == OTPType.SignUp) {
+      // go to home
+    } else if (widget.otpType == OTPType.Update) {
+      context.push(changePasswordScreenRoute, extra: {PHONE_KEY: widget.phone});
     }
   }
 }

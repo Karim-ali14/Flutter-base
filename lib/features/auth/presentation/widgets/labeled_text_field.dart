@@ -5,19 +5,24 @@ import 'package:flutter_base/core/widgets/app_text_field.dart';
 class LabeledTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
+  final int? errorMaxLine;
   final Widget label;
   final bool? isvisible;
   final Widget? suffixIcon;
   final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
-  const LabeledTextField(
-      {super.key,
-      required this.controller,
-      required this.hint,
-      required this.label,
-      this.onChanged,
-      this.isvisible = false,
-      this.suffixIcon});
+  const LabeledTextField({
+    super.key,
+    required this.controller,
+    required this.hint,
+    required this.label,
+    this.onChanged,
+    this.isvisible = false,
+    this.suffixIcon,
+    this.validator,
+    this.errorMaxLine,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +36,11 @@ class LabeledTextField extends StatelessWidget {
           hint: hint,
           borderRidus: BorderRadius.circular(8),
           secured: isvisible,
-          textFieldBorderColor: AppTheme.gray,
+          textFieldBorderColor: AppTheme.blue,
           textEditingController: controller,
           onChanged: onChanged,
+          validate: validator,
+          errorMaxLine: errorMaxLine,
         ),
       ],
     );

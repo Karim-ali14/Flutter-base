@@ -61,6 +61,7 @@ class AppTheme {
   static Color? lightDetailTextColor = Colors.grey[200];
   static const Color darkDetailTextColor = Colors.black54;
   static const Color darkTextColor = Colors.black;
+  static const Color code22252BColor = Color(0xff22252B);
 
   static const kPrimaryColor = Color(0xFF1ad3b0);
   static const kContentColorLightTheme = Color(0xFF1D1D35);
@@ -69,6 +70,7 @@ class AppTheme {
   static const kYellow = Color(0xFFEC9922);
   static const appYellow = Color(0xFFCDCB02);
   static const kErrorColor = Color(0xFFF03738);
+  static const code8088A4Color = Color(0xFF8088A4);
 
   static const kDefaultPadding = 20.0;
 
@@ -157,11 +159,20 @@ class AppTheme {
   TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700);
   static const TextStyle styleblack16normal = TextStyle(
       color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal);
-  static const TextStyle styleColorAppGunmetal40FontSize20W700 = TextStyle(
-      color: appGunmetal, fontSize: 20, fontWeight: FontWeight.w700);
-
-  static const TextStyle styleWithAppGunmetalLinkFonts14w400 = TextStyle(
-      color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
+  static const TextStyle styleColorAppGunmetal40FontSize20W700 =
+      TextStyle(color: appGunmetal, fontSize: 20, fontWeight: FontWeight.w700);
+  static const TextStyle style14W500code8088A4Color = TextStyle(
+      color: code8088A4Color,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      fontFamily: "cairepro");
+  static const TextStyle styleWithAppGunmetalLinkFonts14w400 =
+      TextStyle(color: appGunmetal, fontSize: 14, fontWeight: FontWeight.w400);
+  static const TextStyle fontStyle24W70022252BColor = TextStyle(
+      color: code22252BColor,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      fontFamily: "cairepro");
 
   static const TextStyle styleWithAppGrey7Fonts14w400 = TextStyle(
       color: appGrey7, fontSize: 14, fontWeight: FontWeight.w400);
@@ -190,6 +201,8 @@ class AppTheme {
   static const TextStyle styleWithTextRedAdelleSansExtendedFonts16w400 =
   TextStyle(color: mainAppColor, fontSize: 16, fontWeight: FontWeight.w400);
 
+  static const TextStyle fontStyle16color333740 = TextStyle(
+      color: Color(0xff333740), fontWeight: FontWeight.w400, fontSize: 16);
   static const TextStyle styleWithTextGray7AdelleSansExtendedFonts12w400 =
   TextStyle(color: appGrey7, fontSize: 12, fontWeight: FontWeight.w400);
 
