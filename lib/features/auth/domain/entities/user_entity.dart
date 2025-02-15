@@ -1,18 +1,14 @@
 class User{
-  int? id;
-  String? username;
-  String? fullname;
-  String? email;
-  String? photo;
-  String? status;
   String? token;
+  String? firstName;
+  String? lastName;
+  String? email;
+  int? phoneNumber;
 
   User({
-    this.id,
-    this.username,
-    this.fullname,
+    this.token,
+    this.firstName,
+    this.lastName,
     this.email,
-    this.photo,
-    this.status,
-    this.token,});
+    this.phoneNumber,});
 }

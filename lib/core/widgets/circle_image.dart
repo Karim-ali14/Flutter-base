@@ -1,63 +1,89 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../constants/Assets.dart';
 
-class CircleImage extends StatelessWidget {
+class ImageView extends StatelessWidget {
   final String? initialImg;
   final String? placeHolder;
-  final double? size;
-  final bool? isRect;
+  final double? width;
+  final double? height;
+  final bool? isCircle;
   final double? borderSize;
   final Color? borderColor;
   final BorderRadius? radius;
-  const CircleImage(
+  const ImageView(
       {super.key,
-      this.initialImg,
-      this.size,
-      this.placeHolder,
-      this.isRect,
-      this.radius,
-      this.borderSize,
-      this.borderColor});
+        this.initialImg,
+        this.width,
+        this.height,
+        this.placeHolder,
+        this.isCircle,
+        this.radius,
+        this.borderSize,
+        this.borderColor});
   @override
   Widget build(BuildContext context) {
     return Container(
         clipBehavior: Clip.antiAlias,
-        width: size ?? 50,
-        height: size ?? 50,
+        width: width ?? 50,
+        height: height ?? 50,
         decoration: BoxDecoration(
             color: Colors.white,
-            shape: isRect == true ? BoxShape.rectangle : BoxShape.circle,
+            shape: isCircle == true ? BoxShape.circle : BoxShape.rectangle,
             borderRadius: radius,
             border: Border.all(
                 color: borderColor ?? Colors.transparent,
                 width: borderSize ?? 0)),
-        child: isRect == true ? CachedNetworkImage(
-            placeholder: (context, url) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
+        child: isCircle == true
+            ? ClipOval(
+            child: _isSvg(initialImg)
+                ? SvgPicture.network(
+              initialImg ?? "",
+              placeholderBuilder: (context) => SvgPicture.asset(
                 placeHolder ?? userPlaceholder,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
+              height: height,
+              width: width,
+              fit: BoxFit.cover,
+            )
+                : CachedNetworkImage(
+                placeholder: (context, url) => SvgPicture.asset(
+                  placeHolder ?? userPlaceholder,
+                  fit: BoxFit.cover,
+                ),
+                imageUrl: initialImg ?? "",
+                errorWidget: (context, err, child) => SvgPicture.asset(
+                    placeHolder ?? coverPlaceholder,
+                    fit: BoxFit.cover),
+                fit: BoxFit.cover))
+            : _isSvg(initialImg)
+            ? SvgPicture.network(
+          initialImg ?? "",
+          placeholderBuilder: (context) => SvgPicture.asset(
+            placeHolder ?? coverPlaceholder,
+            fit: BoxFit.cover,
+          ),
+          height: height,
+          width: width,
+          fit: BoxFit.cover,
+        )
+            : CachedNetworkImage(
+            placeholder: (context, url) => SvgPicture.asset(
+              placeHolder ?? coverPlaceholder,
+              fit: BoxFit.cover,
             ),
             imageUrl: initialImg ?? "",
-            errorWidget: (context, err, child) => Image.asset(
-                placeHolder ?? userPlaceholder,
-                fit: BoxFit.contain),
-            fit: BoxFit.cover) : ClipOval(child :CachedNetworkImage(
+            errorWidget: (context, err, child) => SvgPicture.asset(
+                placeHolder ?? coverPlaceholder,
+                fit: BoxFit.cover),
+            fit: BoxFit.cover));
+  }
 
-            placeholder: (context, url) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                placeHolder ?? userPlaceholder,
-                fit: BoxFit.contain,
-              ),
-            ),
-            imageUrl: initialImg ?? "",
-            errorWidget: (context, err, child) => Image.asset(
-                placeHolder ?? userPlaceholder,
-                fit: BoxFit.contain),
-            fit: BoxFit.cover)));
+  bool _isSvg(String? url) {
+    return url?.isNotEmpty == true &&
+        url?.toLowerCase().endsWith(".svg") == true;
   }
 }
