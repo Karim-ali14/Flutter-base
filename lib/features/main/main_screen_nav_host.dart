@@ -15,7 +15,7 @@ class MainScreenNavHost extends ConsumerStatefulWidget {
 }
 
 class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with TickerProviderStateMixin {
-  double horizontalPadding = 40.0;
+  double horizontalPadding = 30.0;
   double horizontalMargin = 0.0;
   int noOfIcons = 4;
 
@@ -137,7 +137,7 @@ class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with Ticke
                                   AnimatedContainer(
                                     duration: const Duration(milliseconds: 375),
                                     curve: Curves.easeOut,
-                                    height: 50, // Reduced height for better alignment
+                                    height: 60, // Reduced height for better alignment
                                     width: 50,
                                     alignment: selected == index
                                         ? Alignment.topCenter
@@ -187,9 +187,7 @@ class AppBarPainter extends CustomPainter {
   double x;
 
   AppBarPainter(this.x);
-
-  double height = 80.0;
-  double start = 35.0;
+  double start = 45.0;
   double end = 120;
 
   @override
@@ -207,9 +205,9 @@ class AppBarPainter extends CustomPainter {
 
     /// DROP paths, included X for animation
     path.lineTo((x) < 20.0 ? 20.0 : x, start);
-    path.quadraticBezierTo(30.0 + x, start, 36.0 + x, start + 30.0);
-    path.quadraticBezierTo(45.0 + x, start + 54.0, 67.0 + x, start + 55.0);
-    path.quadraticBezierTo(98.0 + x, start + 58.0, 108.0 + x, start + 15.0);
+    path.quadraticBezierTo(25.0 + x, start, 42.0 + x, start + 23.0);
+    path.quadraticBezierTo(55.0 + x, start + 35.0, 70.0 + x, start + 35.0);
+    path.quadraticBezierTo(90.0 + x, start + 35.0, 105.0 + x, start + 12.0);
     path.quadraticBezierTo(
         115.0 + x,
         start,
@@ -230,7 +228,7 @@ class AppBarPainter extends CustomPainter {
     canvas.drawPath(path, paint);
 
     /// Circle to show at the top of the drop
-    canvas.drawCircle(Offset(x + 70.0, 55.0), 26.0, circlePaint);
+    canvas.drawCircle(Offset(x + 70.0, 45.0), 26.0, circlePaint);
   }
 
   @override
