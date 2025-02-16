@@ -21,24 +21,16 @@ class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with Ticke
 
   List<Map<String, dynamic>> items = [
     {"icon": homeIconPath, "label": "Home"},
-    {"icon": calendarIconPath, "label": "Calendar"},
+    {"icon": calendarIconPath, "label": "Booking"},
     {"icon": orderIconPath, "label": "Orders"},
-    {"icon": searchIconPath, "label": "Search"},
+    {"icon": profileIconPath, "label": "Profile"},
   ];
 
   List<Widget> screens = [
-    Container(
-      color: AppTheme.gray,
-    ),
-    Container(
-      color: AppTheme.gray,
-    ),
-    Container(
-      color: AppTheme.gray,
-    ),
-    Container(
-      color: AppTheme.gray,
-    ),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
   ];
 
   late double position;
@@ -70,10 +62,12 @@ class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with Ticke
     double totalPadding = 2 * horizontalPadding;
     double valueToOmit = totalMargin + totalPadding;
 
-    return (((MediaQuery.of(context).size.width - valueToOmit) / noOfIcons) *
+     var position = (((MediaQuery.of(context).size.width - valueToOmit) / noOfIcons) *
         index +
         horizontalPadding) +
-        (((MediaQuery.of(context).size.width - valueToOmit) / noOfIcons) / 2) - 70;
+         (((MediaQuery.of(context).size.width - valueToOmit) / noOfIcons) / 2) - 70;
+
+    return position;
   }
 
   void animateDrop(int index) {
@@ -92,6 +86,8 @@ class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with Ticke
 
   @override
   Widget build(BuildContext context) {
+    bool isRTL = Directionality.of(context) == TextDirection.rtl;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -108,7 +104,7 @@ class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with Ticke
               animation: controller,
               builder: (context, child) {
                 return CustomPaint(
-                  painter: AppBarPainter(animation.value),
+                  painter: AppBarPainter(animation.value,isRTL),
                   size: Size(
                       MediaQuery.of(context).size.width - (2 * horizontalMargin),
                       80.0),
@@ -185,8 +181,10 @@ class MainScreenNavHostState extends ConsumerState<MainScreenNavHost> with Ticke
 
 class AppBarPainter extends CustomPainter {
   double x;
+  bool isRTL;
 
-  AppBarPainter(this.x);
+  AppBarPainter(this.x, this.isRTL);
+
   double start = 45.0;
   double end = 120;
 
@@ -203,15 +201,17 @@ class AppBarPainter extends CustomPainter {
     Path path = Path();
     path.moveTo(0.0, start);
 
+    double xOffset = isRTL ? size.width - x - 140 : x;
+
     /// DROP paths, included X for animation
-    path.lineTo((x) < 20.0 ? 20.0 : x, start);
-    path.quadraticBezierTo(25.0 + x, start, 42.0 + x, start + 23.0);
-    path.quadraticBezierTo(55.0 + x, start + 35.0, 70.0 + x, start + 35.0);
-    path.quadraticBezierTo(90.0 + x, start + 35.0, 105.0 + x, start + 12.0);
+    path.lineTo((xOffset) < 20.0 ? 20.0 : xOffset, start);
+    path.quadraticBezierTo(25.0 + xOffset, start, 42.0 + xOffset, start + 23.0);
+    path.quadraticBezierTo(55.0 + xOffset, start + 35.0, 70.0 + xOffset, start + 35.0);
+    path.quadraticBezierTo(90.0 + xOffset, start + 35.0, 105.0 + xOffset, start + 12.0);
     path.quadraticBezierTo(
-        115.0 + x,
+        115.0 + xOffset,
         start,
-        (140.0 + x) > (size.width - 20.0) ? (size.width - 20.0) : 135 + x,
+        (140.0 + xOffset) > (size.width - 20.0) ? (size.width - 20.0) : 135 + xOffset,
         start);
     path.lineTo(size.width - 20.0, start);
 
@@ -228,7 +228,7 @@ class AppBarPainter extends CustomPainter {
     canvas.drawPath(path, paint);
 
     /// Circle to show at the top of the drop
-    canvas.drawCircle(Offset(x + 70.0, 45.0), 26.0, circlePaint);
+    canvas.drawCircle(Offset(xOffset + 70.0, 45.0), 26.0, circlePaint);
   }
 
   @override
