@@ -9,6 +9,7 @@ import 'package:flutter_base/features/home/persentaion/widget/search_with_filter
 import 'package:flutter_base/features/home/persentaion/widget/service_options.dart';
 
 import '../../../core/constants/assets.dart';
+import '../../../core/utils/Extensions/utils_exts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +19,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    UtilsExts.handleStatusBarColorWithIcon(
+        statusBarColor:
+        Color.lerp(AppTheme.appHeaderOne, AppTheme.appHeaderTwo, .4),statusBarIcons: Brightness.light);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,5 +150,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    UtilsExts.handleStatusBarColorWithIcon(
+        statusBarColor: Colors.white);
   }
 }
