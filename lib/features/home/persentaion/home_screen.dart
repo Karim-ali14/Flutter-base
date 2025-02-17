@@ -26,9 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsetsDirectional.symmetric(
+                padding: const EdgeInsetsDirectional.symmetric(
                     horizontal: defaultPaddingHorizontal, vertical: 24),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [AppTheme.appHeaderOne, AppTheme.appHeaderTwo],
                       begin: Alignment.topLeft,
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         SVGIcons.localSVG(homeGpsIconPath,
                             width: 24, height: 24),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsetsDirectional.symmetric(
                               horizontal: defaultButtonRadius),
                           child: Text(
@@ -126,12 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         list: ["", "", "", "", "", "", ""],
                         showLoading: false,
                         itemClick: () {},
-                        onSeeAllClickListener: () {}
-                    ),
+                        onSeeAllClickListener: () {}),
                     SizedBox(
                       height: 24,
                     ),
-                    HomeRestaurantListview(restaurants: ["","",""], showLoading: false)
+                    HomeRestaurantListview(
+                        restaurants: ["", "", ""], showLoading: false)
                   ],
                 ),
               ),

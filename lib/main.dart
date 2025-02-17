@@ -18,7 +18,8 @@ import 'features/auth/presentation/screens/login_screen.dart';
 import 'features/auth/presentation/screens/otp_screen.dart';
 import 'features/auth/presentation/screens/sign_up_screen.dart';
 import 'features/auth/presentation/screens/splash_screen.dart';
-import 'features/home/presentation/screens/cuisines_screen.dart';
+import 'features/home/persentaion/cuisines_screen.dart';
+import 'features/home/persentaion/see_all_screen_for_category.dart';
 
 late SharedPreferences prefs;
 
@@ -140,7 +141,8 @@ class MyApp extends ConsumerWidget {
     routes: <GoRoute>[
       GoRoute(
         path: splashScreenRoute,
-        builder: (BuildContext context, GoRouterState state) => SplashScreen(),
+        builder: (BuildContext context, GoRouterState state) =>
+            ForgetPasswordScreen(),
       ),
       GoRoute(
         path: loginScreenRoute,
@@ -192,6 +194,11 @@ class MyApp extends ConsumerWidget {
         path: cuisinesScreenRoute,
         builder: (BuildContext context, GoRouterState state) =>
             CuisinesScreen(),
+      ),
+      GoRoute(
+        path: seeAllScreenForCategoryRoute,
+        builder: (BuildContext context, GoRouterState state) =>
+            SeeAllScreenForCategory(),
       ),
     ],
   );
