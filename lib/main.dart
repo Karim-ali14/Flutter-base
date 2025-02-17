@@ -141,8 +141,7 @@ class MyApp extends ConsumerWidget {
     routes: <GoRoute>[
       GoRoute(
         path: splashScreenRoute,
-        builder: (BuildContext context, GoRouterState state) =>
-            ForgetPasswordScreen(),
+        builder: (BuildContext context, GoRouterState state) => LoginScreen(),
       ),
       GoRoute(
         path: loginScreenRoute,
